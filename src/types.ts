@@ -1,0 +1,40 @@
+export interface Experience {
+  role: string;
+  company: string;
+  year: string;
+  current?: boolean;
+}
+
+export interface TechStackCategory {
+  category: string;
+  skills: string[];
+}
+
+export interface Project {
+  title: string;
+  description: string;
+  link?: string;
+  tag?: string;
+  category?: string;
+  overview?: string;
+  features?: string[];
+  techStack?: string[];
+  images?: string[];
+}
+
+export interface Certification {
+  title: string;
+  issuer: string;
+}
+
+export interface Recommendation {
+  text: string;
+  name: string;
+  title: string;
+}
+
+export interface SocialLink {
+  name: string;
+  url: string;
+  icon: string;
+}
