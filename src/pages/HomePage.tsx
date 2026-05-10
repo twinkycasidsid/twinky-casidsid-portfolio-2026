@@ -129,11 +129,21 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
               </div>
             </section>
 
-            {/* Certifications Section */}
+            {/* Education Section */}
+            <section className={`p-8 rounded-3xl border ${isDarkMode ? "bg-zinc-900/50 border-zinc-800" : "bg-white border-zinc-100 shadow-sm"}`}>
+              <h2 className="text-2xl font-bold mb-6">Education</h2>
+              <div className="space-y-1">
+                <h4 className="text-lg font-bold">BS Information Technology</h4>
+                <p className={`font-medium ${isDarkMode ? "text-zinc-300" : "text-zinc-600"}`}>Polytechnic University of the Philippines</p>
+                <p className="text-sm text-zinc-500">2022 - 2027</p>
+              </div>
+            </section>
+
+            {/* Achievements Section */}
             <section className={`p-8 rounded-3xl border ${isDarkMode ? "bg-zinc-900/50 border-zinc-800" : "bg-white border-zinc-100 shadow-sm"}`}>
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold">Certifications</h2>
-                <button className="text-sm font-bold text-zinc-500 hover:text-blue-500 transition-colors">View All &rarr;</button>
+                <h2 className="text-2xl font-bold">Achievements</h2>
+                <Link to="/achievements" className="text-sm font-bold text-zinc-500 hover:text-blue-500 transition-colors">View All &rarr;</Link>
               </div>
               <div className="space-y-4">
                 {CERTIFICATIONS.map((cert) => (
@@ -147,10 +157,7 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
 
             {/* Tech Stack Section */}
             <section className={`p-8 rounded-3xl border ${isDarkMode ? "bg-zinc-900/50 border-zinc-800" : "bg-white border-zinc-100 shadow-sm"}`}>
-              <div className="flex items-center justify-between mb-8">
-                <h2 className="text-2xl font-bold">Tech Stack</h2>
-                <button className="text-sm font-bold text-zinc-500 hover:text-blue-500 transition-colors">View All &rarr;</button>
-              </div>
+              <h2 className="text-2xl font-bold mb-8">Tech Stack</h2>
               <div className="space-y-8">
                 {TECH_STACK.map((cat) => (
                   <div key={cat.category} className="space-y-4">

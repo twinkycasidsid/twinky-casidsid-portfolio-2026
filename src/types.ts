@@ -25,6 +25,9 @@ export interface Project {
 export interface Certification {
   title: string;
   issuer: string;
+  image?: string;
+  description?: string;
+  year?: string;
 }
 
 export interface Recommendation {

@@ -90,10 +90,34 @@ export const PROJECTS: Project[] = [
 ];
 
 export const CERTIFICATIONS: Certification[] = [
-  { title: "IBM SkillsBuild: AI Fundamentals", issuer: "IBM" },
-  { title: "Cisco: Ethical Hacker", issuer: "Cisco" },
-  { title: "11th ICT Congress 3rd Placer", issuer: "ICT Congress" },
-  { title: "Consistent Dean's Lister", issuer: "UCLM" }
+  { 
+    title: "IBM SkillsBuild: AI Fundamentals", 
+    issuer: "IBM", 
+    year: "2025",
+    description: "Professional credentials and training in AI, Prompt Engineering, and IT Resilience.",
+    image: "https://images.unsplash.com/photo-1517245385169-46b8b23ad391?w=1200&q=80" 
+  },
+  { 
+    title: "Cisco: Ethical Hacker", 
+    issuer: "Cisco", 
+    year: "2025",
+    description: "Certification covering network security, penetration testing, and ethical hacking methodologies.",
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=80" 
+  },
+  { 
+    title: "11th ICT Congress 3rd Placer", 
+    issuer: "ICT Congress", 
+    year: "2025",
+    description: "Awarded 3rd place in the regional ICT Congress competition for software innovation.",
+    image: "https://images.unsplash.com/photo-1523240715639-960413009774?w=1200&q=80"
+  },
+  { 
+    title: "Consistent Dean's Lister", 
+    issuer: "UCLM", 
+    year: "2023-2025",
+    description: "Recognized for academic excellence and maintaining high scholastic standards.",
+    image: "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?w=1200&q=80"
+  }
 ];
 
 export const RECOMMENDATIONS: Recommendation[] = [
