@@ -28,6 +28,7 @@ export interface Certification {
   image?: string;
   description?: string;
   year?: string;
+  featured?: boolean;
 }
 
 export interface Recommendation {

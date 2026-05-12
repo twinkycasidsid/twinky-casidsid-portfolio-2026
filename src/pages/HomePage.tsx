@@ -35,6 +35,7 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
 
   const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
   const [selectedGalleryImage, setSelectedGalleryImage] = useState<string | null>(null);
+  const featuredCertifications = CERTIFICATIONS.filter((cert) => cert.featured);
 
   const galleryImages = [
     "https://images.unsplash.com/photo-1517245385169-46b8b23ad391?w=1200&q=80",
@@ -132,10 +133,27 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
             {/* Education Section */}
             <section className={`p-8 rounded-3xl border ${isDarkMode ? "bg-zinc-900/50 border-zinc-800" : "bg-white border-zinc-100 shadow-sm"}`}>
               <h2 className="text-2xl font-bold mb-6">Education</h2>
-              <div className="space-y-1">
-                <h4 className="text-lg font-bold">BS Information Technology</h4>
-                <p className={`font-medium ${isDarkMode ? "text-zinc-300" : "text-zinc-600"}`}>Polytechnic University of the Philippines</p>
-                <p className="text-sm text-zinc-500">2022 - 2027</p>
+              <div className="space-y-6">
+                <div className="space-y-1">
+                  <h4 className="text-lg font-bold">Bachelor of Science in Information Technology (BSIT)</h4>
+                  <p className={`font-medium ${isDarkMode ? "text-zinc-300" : "text-zinc-600"}`}>UNIVERSITY OF CEBU LAPU-LAPU & MANDAUE</p>
+                  <p className="text-sm text-zinc-500">Expected Graduation: May 2026</p>
+                </div>
+
+                <div className="space-y-1">
+                  <h4 className="text-lg font-bold">Senior High School</h4>
+                  <p className={`font-medium ${isDarkMode ? "text-zinc-300" : "text-zinc-600"}`}>UNIVERSITY OF CEBU LAPU-LAPU & MANDAUE</p>
+                  <p className="text-sm text-zinc-500">Technical Vocational Strand - ICT</p>
+                  <p className="text-sm text-zinc-500">Major in Computer Programming</p>
+                  <p className="text-sm text-zinc-500">2019 - 2021</p>
+                </div>
+
+                <div className="space-y-1">
+                  <h4 className="text-lg font-bold">9th Grade - 10th Grade</h4>
+                  <p className={`font-medium ${isDarkMode ? "text-zinc-300" : "text-zinc-600"}`}>University of Cebu Lapu-Lapu & Mandaue</p>
+                  <p className="text-sm text-zinc-500">Major in Computer Hardware Servicing</p>
+                  <p className="text-sm text-zinc-500">2014 - 2019</p>
+                </div>
               </div>
             </section>
 
@@ -146,7 +164,7 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
                 <Link to="/achievements" className="text-sm font-bold text-zinc-500 hover:text-blue-500 transition-colors">View All &rarr;</Link>
               </div>
               <div className="space-y-4">
-                {CERTIFICATIONS.map((cert) => (
+                {featuredCertifications.map((cert) => (
                   <div key={cert.title} className={`p-5 rounded-2xl border transition-all ${isDarkMode ? "bg-zinc-950/50 border-zinc-800 hover:border-zinc-700" : "bg-neutral-50 border-zinc-100 hover:border-zinc-200"}`}>
                     <h4 className="font-bold">{cert.title}</h4>
                     <p className="text-sm text-zinc-500 mt-1">{cert.issuer} • 2025</p>

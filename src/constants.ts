@@ -91,32 +91,106 @@ export const PROJECTS: Project[] = [
 
 export const CERTIFICATIONS: Certification[] = [
   { 
-    title: "IBM SkillsBuild: AI Fundamentals", 
-    issuer: "IBM", 
+    title: "Top 3 Best in Apps Development", 
+    issuer: "CASIDSID", 
     year: "2025",
-    description: "Professional credentials and training in AI, Prompt Engineering, and IT Resilience.",
-    image: "https://images.unsplash.com/photo-1517245385169-46b8b23ad391?w=1200&q=80" 
+    description: "Recognized for outstanding performance and practical application development skills.",
+    image: "/certificates/CASIDSID, TWINKY_Top3BestAPPSDEV.jpg",
+    featured: true
   },
   { 
-    title: "Cisco: Ethical Hacker", 
+    title: "Top 20 Dean's List", 
+    issuer: "CASIDSID", 
+    year: "2025",
+    description: "Academic recognition for consistent performance and strong scholastic standing.",
+    image: "/certificates/CASIDSID, TWINKY_Top20DeansList.jpg",
+    featured: true
+  },
+  { 
+    title: "IBM SkillsBuild: AI Fundamentals", 
+    issuer: "IBM SkillsBuild", 
+    year: "2025",
+    description: "Professional credentials and training in AI, Prompt Engineering, and IT Resilience.",
+    image: "/certificates/CASIDSID, TWINKY_IBMSkillsBuild-AIFundamentals.png",
+    featured: true
+  },
+  { 
+    title: "PSITS 2nd Year Representative", 
+    issuer: "PSITS", 
+    year: "2025",
+    description: "Leadership recognition for serving as the second-year representative in PSITS.",
+    image: "/certificates/CASIDSID, TWINKY_PSITS2ndYearRep.jpg",
+    featured: true
+  },
+  { 
+    title: "11th ICT Congress 3rd Place in Networking", 
+    issuer: "ICT Congress", 
+    year: "2025",
+    description: "Awarded third place in a regional ICT competition focused on networking.",
+    image: "/certificates/CASIDSID, TWINKY_3rdplaceNetworking.jpg"
+  },
+  { 
+    title: "Canva Design Certification", 
+    issuer: "Canva", 
+    year: "2025",
+    description: "Training certificate covering practical visual design and content creation workflows.",
+    image: "/certificates/CASIDSID, TWINKY_Canva.jpg"
+  },
+  { 
+    title: "CCNA 7", 
+    issuer: "Cisco", 
+    year: "2025",
+    description: "Networking coursework and certification aligned with Cisco CCNA learning outcomes.",
+    image: "/certificates/CASIDSID, TWINKY_CCNA7.jpg"
+  },
+  { 
+    title: "C# Workshop", 
+    issuer: "CASIDSID", 
+    year: "2025",
+    description: "Workshop certificate covering core C# development concepts and implementation practice.",
+    image: "/certificates/CASIDSID, TWINKY_CSharpWorkshop.png"
+  },
+  { 
+    title: "College Days COP Networking", 
+    issuer: "CASIDSID", 
+    year: "2025",
+    description: "Recognition for participation in college networking activities and collaborative events.",
+    image: "/certificates/CASIDSID, TWINKY_COPNetworkingCollegeDays.jpg"
+  },
+  { 
+    title: "Cisco Ethical Hacker", 
     issuer: "Cisco", 
     year: "2025",
     description: "Certification covering network security, penetration testing, and ethical hacking methodologies.",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=80" 
+    image: "/certificates/CASIDSID, TWINKY_EthicalHacker.jpg"
   },
   { 
-    title: "11th ICT Congress 3rd Placer", 
-    issuer: "ICT Congress", 
+    title: "IBM SkillsBuild: Getting Started with AI", 
+    issuer: "IBM SkillsBuild", 
     year: "2025",
-    description: "Awarded 3rd place in the regional ICT Congress competition for software innovation.",
-    image: "https://images.unsplash.com/photo-1523240715639-960413009774?w=1200&q=80"
+    description: "Foundational training on AI concepts, applications, and introductory workflows.",
+    image: "/certificates/CASIDSID, TWINKY_IBMSkillsBuild-GettingStartedWithAI.png"
   },
   { 
-    title: "Consistent Dean's Lister", 
-    issuer: "UCLM", 
-    year: "2023-2025",
-    description: "Recognized for academic excellence and maintaining high scholastic standards.",
-    image: "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?w=1200&q=80"
+    title: "IBM SkillsBuild: Working in a Digital World", 
+    issuer: "IBM SkillsBuild", 
+    year: "2025",
+    description: "Certificate covering workplace readiness, productivity, and digital collaboration skills.",
+    image: "/certificates/CASIDSID, TWINKY_IBMSkillsBuild-WorkingInADigitalWord.png"
+  },
+  { 
+    title: "Tech Talk: Database Programming", 
+    issuer: "CASIDSID", 
+    year: "2025",
+    description: "Seminar certificate focused on database programming concepts and practical usage.",
+    image: "/certificates/CASIDSID, TWINKY_TECHTalkDBProgramming.jpg"
+  },
+  { 
+    title: "Tech Talk: Networking", 
+    issuer: "CASIDSID", 
+    year: "2025",
+    description: "Seminar certificate covering networking fundamentals and industry practices.",
+    image: "/certificates/CASIDSID, TWINKY_TECHTalkNetworking.jpg"
   }
 ];
 
