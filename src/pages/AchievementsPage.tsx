@@ -55,8 +55,8 @@ export default function AchievementsPage({ isDarkMode }: AchievementsPageProps) 
               <div className="p-8 space-y-4">
                 <div>
                   <h3 className="text-2xl font-bold transition-colors uppercase tracking-tight">{cert.title}</h3>
-                  <p className="text-zinc-500 font-medium leading-relaxed">
-                    {cert.issuer} • {cert.year}
+                  <p className="text-zinc-500 font-medium leading-relaxed line-clamp-3">
+                    {cert.description}
                   </p>
                 </div>
               </div>
@@ -104,7 +104,7 @@ export default function AchievementsPage({ isDarkMode }: AchievementsPageProps) 
               
               <div className="mt-8 text-center space-y-2 pointer-events-auto">
                  <h2 className="text-2xl font-bold text-white tracking-tight uppercase">{selectedCert.title}</h2>
-                 <p className="text-zinc-400 font-medium">{selectedCert.issuer} • {selectedCert.year}</p>
+                 <p className="text-zinc-400 font-medium leading-relaxed max-w-3xl">{selectedCert.description}</p>
               </div>
             </motion.div>
 

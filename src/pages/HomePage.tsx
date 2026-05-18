@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { EXPERIENCES, TECH_STACK, PROJECTS, CERTIFICATIONS, RECOMMENDATIONS, SOCIAL_LINKS } from "../constants";
-import { Project } from "../types";
+import { Certification, Project } from "../types";
 import { ProjectModal } from "../components/ProjectModal";
 
 interface HomePageProps {
@@ -31,6 +31,7 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
   const [activeRecommendation, setActiveRecommendation] = useState(0);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedCertificate, setSelectedCertificate] = useState<Certification | null>(null);
   const [activeProjectImage, setActiveProjectImage] = useState(0);
 
   const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
@@ -165,10 +166,15 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
               </div>
               <div className="space-y-4">
                 {featuredCertifications.map((cert) => (
-                  <div key={cert.title} className={`p-5 rounded-2xl border transition-all ${isDarkMode ? "bg-zinc-950/50 border-zinc-800 hover:border-zinc-700" : "bg-neutral-50 border-zinc-100 hover:border-zinc-200"}`}>
+                  <motion.div
+                    key={cert.title}
+                    whileHover={{ y: -4 }}
+                    onClick={() => setSelectedCertificate(cert)}
+                    className={`p-5 rounded-2xl border transition-all cursor-pointer ${isDarkMode ? "bg-zinc-950/50 border-zinc-800 hover:border-zinc-700" : "bg-neutral-50 border-zinc-100 hover:border-zinc-200"}`}
+                  >
                     <h4 className="font-bold">{cert.title}</h4>
-                    <p className="text-sm text-zinc-500 mt-1">{cert.issuer} • 2025</p>
-                  </div>
+                    <p className="text-sm text-zinc-500 mt-1 leading-relaxed line-clamp-3">{cert.description}</p>
+                  </motion.div>
                 ))}
               </div>
             </section>
@@ -449,6 +455,44 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
         activeImage={activeProjectImage}
         setActiveImage={setActiveProjectImage}
       />
+
+      <AnimatePresence>
+        {selectedCertificate && (
+          <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 md:p-12">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedCertificate(null)}
+              className="absolute inset-0 bg-black/95 backdrop-blur-2xl"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="relative w-full max-w-5xl h-full flex flex-col items-center justify-center pointer-events-none"
+            >
+              <img
+                src={selectedCertificate.image}
+                className="w-full h-auto max-h-[85vh] object-contain rounded-xl pointer-events-auto shadow-2xl"
+                alt={selectedCertificate.title}
+              />
+
+              <div className="mt-8 text-center space-y-2 pointer-events-auto">
+                <h2 className="text-2xl font-bold text-white tracking-tight uppercase">{selectedCertificate.title}</h2>
+                <p className="text-zinc-400 font-medium leading-relaxed max-w-3xl">{selectedCertificate.description}</p>
+              </div>
+            </motion.div>
+
+            <button
+              onClick={() => setSelectedCertificate(null)}
+              className="absolute top-8 right-8 p-3 bg-black/20 hover:bg-black/40 backdrop-blur-md rounded-full text-white transition-all border border-white/10 z-[160]"
+            >
+              <X className="w-8 h-8" />
+            </button>
+          </div>
+        )}
+      </AnimatePresence>
 
       {/* Gallery Image Modal */}
       <AnimatePresence>

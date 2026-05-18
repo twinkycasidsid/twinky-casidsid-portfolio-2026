@@ -91,26 +91,26 @@ export const PROJECTS: Project[] = [
 
 export const CERTIFICATIONS: Certification[] = [
   { 
-    title: "Top 3 Best in Apps Development", 
+    title: "Best Project Award in Application Development (Top 3)", 
     issuer: "CASIDSID", 
     year: "2025",
-    description: "Recognized for outstanding performance and practical application development skills.",
+    description: "Awarded Top 3 Best Project in Application Development (APPSDEV) during 2nd year college for developing ScholarTrack, a C# desktop application integrated with MS Access for local data storage. The system automated scholar attendance monitoring by recording time-ins and time-outs, replacing manual logbooks with a more reliable and efficient solution for academic record management.",
     image: "/certificates/CASIDSID, TWINKY_Top3BestAPPSDEV.jpg",
     featured: true
   },
   { 
-    title: "Top 20 Dean's List", 
+    title: "Dean's List . Top 20 BSIT Students", 
     issuer: "CASIDSID", 
     year: "2025",
-    description: "Academic recognition for consistent performance and strong scholastic standing.",
+    description: "Recognized as one of the Top 20 BSIT students for outstanding academic performance, dedication, and consistent excellence in Information Technology studies.",
     image: "/certificates/CASIDSID, TWINKY_Top20DeansList.jpg",
     featured: true
   },
   { 
-    title: "IBM SkillsBuild: AI Fundamentals", 
+    title: "IBM SkillsBuild . Artificial Intelligence Fundamentals", 
     issuer: "IBM SkillsBuild", 
     year: "2025",
-    description: "Professional credentials and training in AI, Prompt Engineering, and IT Resilience.",
+    description: "Successfully completed the IBM SkillsBuild course on Artificial Intelligence Fundamentals, covering core AI concepts, machine learning basics, and practical applications of artificial intelligence technologies.",
     image: "/certificates/CASIDSID, TWINKY_IBMSkillsBuild-AIFundamentals.png",
     featured: true
   },
@@ -118,50 +118,50 @@ export const CERTIFICATIONS: Certification[] = [
     title: "PSITS 2nd Year Representative", 
     issuer: "PSITS", 
     year: "2025",
-    description: "Leadership recognition for serving as the second-year representative in PSITS.",
+    description: "Recognized for active leadership, participation, and dedication as the 2nd Year Representative of Philippine Society of Information Technology Students.",
     image: "/certificates/CASIDSID, TWINKY_PSITS2ndYearRep.jpg",
     featured: true
   },
   { 
-    title: "11th ICT Congress 3rd Place in Networking", 
+    title: "3rd Place . Networking Competition . 11th UC ICT Congress 2025", 
     issuer: "ICT Congress", 
     year: "2025",
-    description: "Awarded third place in a regional ICT competition focused on networking.",
+    description: "Achieved 3rd Place in the Networking Competition during the UC ICT Congress 2025, demonstrating strong technical expertise in network configuration, troubleshooting, and problem-solving.",
     image: "/certificates/CASIDSID, TWINKY_3rdplaceNetworking.jpg"
   },
   { 
     title: "Canva Design Certification", 
     issuer: "Canva", 
     year: "2025",
-    description: "Training certificate covering practical visual design and content creation workflows.",
+    description: "Successfully completed the Canva Design Certification program focused on visual design principles, content creation, and digital graphic design tools.",
     image: "/certificates/CASIDSID, TWINKY_Canva.jpg"
   },
   { 
-    title: "CCNA 7", 
+    title: "CCNA 7 . Switching, Routing, and Wireless Essentials", 
     issuer: "Cisco", 
     year: "2025",
-    description: "Networking coursework and certification aligned with Cisco CCNA learning outcomes.",
+    description: "Completed the Cisco Networking Academy CCNA 7 course on Switching, Routing, and Wireless Essentials, covering network infrastructure, routing protocols, wireless networking, and network security fundamentals.",
     image: "/certificates/CASIDSID, TWINKY_CCNA7.jpg"
   },
   { 
-    title: "C# Workshop", 
+    title: "C# Programming Workshop", 
     issuer: "CASIDSID", 
     year: "2025",
-    description: "Workshop certificate covering core C# development concepts and implementation practice.",
+    description: "Participated in a C# Programming Workshop focused on software development fundamentals, object-oriented programming, and application development techniques.",
     image: "/certificates/CASIDSID, TWINKY_CSharpWorkshop.png"
   },
   { 
-    title: "College Days COP Networking", 
+    title: "Certificate of Participation . Networking Contest . College Days 2025", 
     issuer: "CASIDSID", 
     year: "2025",
-    description: "Recognition for participation in college networking activities and collaborative events.",
+    description: "Awarded a Certificate of Participation for competing in the Networking Contest during College Days 2025, demonstrating technical knowledge and teamwork in networking activities.",
     image: "/certificates/CASIDSID, TWINKY_COPNetworkingCollegeDays.jpg"
   },
   { 
     title: "Cisco Ethical Hacker", 
     issuer: "Cisco", 
     year: "2025",
-    description: "Certification covering network security, penetration testing, and ethical hacking methodologies.",
+    description: "Completed the Cisco Networking Academy Ethical Hacker program, covering cybersecurity fundamentals, ethical hacking concepts, vulnerability assessment, and network security practices.",
     image: "/certificates/CASIDSID, TWINKY_EthicalHacker.jpg"
   },
   { 
@@ -179,17 +179,17 @@ export const CERTIFICATIONS: Certification[] = [
     image: "/certificates/CASIDSID, TWINKY_IBMSkillsBuild-WorkingInADigitalWord.png"
   },
   { 
-    title: "Tech Talk: Database Programming", 
+    title: "Tech Talk . Database Programming", 
     issuer: "CASIDSID", 
     year: "2025",
-    description: "Seminar certificate focused on database programming concepts and practical usage.",
+    description: "Participated in the Tech Talk on Database Programming during College Days 2025, focusing on database concepts, query development, and application integration techniques.",
     image: "/certificates/CASIDSID, TWINKY_TECHTalkDBProgramming.jpg"
   },
   { 
-    title: "Tech Talk: Networking", 
+    title: "Tech Talk . Networking", 
     issuer: "CASIDSID", 
     year: "2025",
-    description: "Seminar certificate covering networking fundamentals and industry practices.",
+    description: "Participated in the Tech Talk on Networking during College Days 2025, discussing networking fundamentals, infrastructure, and modern communication technologies.",
     image: "/certificates/CASIDSID, TWINKY_TECHTalkNetworking.jpg"
   }
 ];
