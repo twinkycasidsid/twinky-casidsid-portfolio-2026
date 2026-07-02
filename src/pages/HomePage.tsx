@@ -18,7 +18,7 @@ import {
   X
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { EXPERIENCES, TECH_STACK, PROJECTS, CERTIFICATIONS, RECOMMENDATIONS, SOCIAL_LINKS } from "../constants";
+import { EXPERIENCES, TECH_STACK, PROJECTS, CERTIFICATIONS, SOCIAL_LINKS } from "../constants";
 import { Certification, Project } from "../types";
 import { ProjectModal } from "../components/ProjectModal";
 
@@ -28,7 +28,6 @@ interface HomePageProps {
 }
 
 export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
-  const [activeRecommendation, setActiveRecommendation] = useState(0);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedCertificate, setSelectedCertificate] = useState<Certification | null>(null);
@@ -39,10 +38,26 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
   const featuredCertifications = CERTIFICATIONS.filter((cert) => cert.featured);
 
   const galleryImages = [
-    "https://images.unsplash.com/photo-1517245385169-46b8b23ad391?w=1200&q=80",
-    "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&q=80",
-    "https://images.unsplash.com/photo-1540317580114-ed684c82b9b2?w=1200&q=80",
-    "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&q=80"
+    "/gallery/img1.jpg",
+    "/gallery/img2.jpg",
+    "/gallery/img3.jpg",
+    "/gallery/img4.jpg",
+    "/gallery/img5.jpg",
+    "/gallery/img6.jpg",
+    "/gallery/img7.jpg",
+    "/gallery/img8.jpg",
+    "/gallery/img9.jpg",
+    "/gallery/img10.jpg",
+    "/gallery/img11.jpg",
+    "/gallery/img12.jpg",
+    "/gallery/img13.jpg",
+    "/gallery/img14.jpg",
+    "/gallery/img15.jpg",
+    "/gallery/img16.jpg",
+    "/gallery/img17.jpg",
+    "/gallery/img18.jpg",
+    "/gallery/img19.jpg",
+    "/gallery/img20.jpg"
   ];
 
   useEffect(() => {
@@ -86,7 +101,7 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
                 </div>
                 <div className="flex items-center justify-center md:justify-start gap-2 text-zinc-500 font-medium tracking-wide">
                   <MapPin className="w-5 h-5" />
-                  <span>Mandaue City, Cebu, Philippines</span>
+                  <span>Mandaue City, Cebu</span>
                 </div>
               </div>
               
@@ -99,7 +114,7 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
             </div>
 
             <p className="text-xl font-bold tracking-tight text-zinc-400">
-               BSIT Student <span className="mx-2 text-zinc-700">|</span> Software Developer <span className="mx-2 text-zinc-700">|</span> UI/UX Designer <span className="mx-2 text-zinc-700">|</span> AI Enthusiast
+               BSIT Graduate <span className="mx-2 text-zinc-700">|</span> Software Developer <span className="mx-2 text-zinc-700">|</span> UI/UX Designer <span className="mx-2 text-zinc-700">|</span> AI & IoT Developer
             </p>
 
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
@@ -126,7 +141,7 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
               <h2 className="text-2xl font-bold mb-6">About Me</h2>
               <div className="space-y-4 text-zinc-500 font-medium leading-relaxed">
                 <p>
-                  I'm an IT student at UCLM with a strong foundation in software engineering and design logic. I've learned that a solid foundation is everything, applying structural logic to help build reliable digital tools.
+                  BSIT graduate with hands-on experience in web, mobile, AI, and IoT development. Skilled in React, React Native, C#, Java, Python, Supabase, and SQL, with experience building full-stack applications, AI-powered systems, and mobile solutions. Strong background in project leadership, UI/UX design, and collaborative software development.
                 </p>
               </div>
             </section>
@@ -137,23 +152,10 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
               <div className="space-y-6">
                 <div className="space-y-1">
                   <h4 className="text-lg font-bold">Bachelor of Science in Information Technology (BSIT)</h4>
-                  <p className={`font-medium ${isDarkMode ? "text-zinc-300" : "text-zinc-600"}`}>UNIVERSITY OF CEBU LAPU-LAPU & MANDAUE</p>
-                  <p className="text-sm text-zinc-500">Expected Graduation: May 2026</p>
-                </div>
-
-                <div className="space-y-1">
-                  <h4 className="text-lg font-bold">Senior High School</h4>
-                  <p className={`font-medium ${isDarkMode ? "text-zinc-300" : "text-zinc-600"}`}>UNIVERSITY OF CEBU LAPU-LAPU & MANDAUE</p>
-                  <p className="text-sm text-zinc-500">Technical Vocational Strand - ICT</p>
-                  <p className="text-sm text-zinc-500">Major in Computer Programming</p>
-                  <p className="text-sm text-zinc-500">2019 - 2021</p>
-                </div>
-
-                <div className="space-y-1">
-                  <h4 className="text-lg font-bold">9th Grade - 10th Grade</h4>
-                  <p className={`font-medium ${isDarkMode ? "text-zinc-300" : "text-zinc-600"}`}>University of Cebu Lapu-Lapu & Mandaue</p>
-                  <p className="text-sm text-zinc-500">Major in Computer Hardware Servicing</p>
-                  <p className="text-sm text-zinc-500">2014 - 2019</p>
+                  <p className={`font-medium ${isDarkMode ? "text-zinc-300" : "text-zinc-600"}`}>University of Cebu - Lapu-Lapu & Mandaue</p>
+                  <p className="text-sm text-zinc-500">Aug 2022 - June 2026</p>
+                  <p className="text-sm text-zinc-500">Cumulative GPA: 1.361 | Magna Cum Laude</p>
+                  <p className="text-sm text-zinc-500">Relevant Coursework: Software Development, Database Management Systems, Web Development, Mobile Application Development, Artificial Intelligence</p>
                 </div>
               </div>
             </section>
@@ -182,13 +184,16 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
             {/* Tech Stack Section */}
             <section className={`p-8 rounded-3xl border ${isDarkMode ? "bg-zinc-900/50 border-zinc-800" : "bg-white border-zinc-100 shadow-sm"}`}>
               <h2 className="text-2xl font-bold mb-8">Tech Stack</h2>
-              <div className="space-y-8">
+              <div className="grid gap-4 sm:grid-cols-2">
                 {TECH_STACK.map((cat) => (
-                  <div key={cat.category} className="space-y-4">
+                  <div
+                    key={cat.category}
+                    className={`rounded-2xl border p-5 space-y-4 h-full ${isDarkMode ? "bg-zinc-950/50 border-zinc-800" : "bg-neutral-50 border-zinc-200/70"}`}
+                  >
                     <h3 className="text-sm font-bold uppercase tracking-widest text-zinc-500">{cat.category}</h3>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2.5">
                       {cat.skills.map((skill) => (
-                        <span key={skill} className={`px-4 py-2 rounded-xl text-sm font-bold border ${isDarkMode ? "bg-zinc-950/50 border-zinc-800" : "bg-white border-zinc-200"}`}>
+                        <span key={skill} className={`px-3.5 py-2 rounded-xl text-sm font-bold border ${isDarkMode ? "bg-zinc-900 border-zinc-800 text-zinc-200" : "bg-white border-zinc-200 text-zinc-700"}`}>
                           {skill}
                         </span>
                       ))}
@@ -234,7 +239,7 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
                 <Link to="/projects" className="text-sm font-bold text-zinc-500 hover:text-blue-500 transition-colors">View All &rarr;</Link>
               </div>
               <div className="grid md:grid-cols-2 gap-6">
-                {PROJECTS.map((project, i) => (
+                {PROJECTS.map((project) => (
                   <motion.div 
                     key={project.title}
                     whileHover={{ y: -4 }}
@@ -244,63 +249,38 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
                     }}
                     className={`group flex flex-col rounded-3xl border overflow-hidden transition-all cursor-pointer ${isDarkMode ? "bg-zinc-950 border-zinc-900 hover:border-zinc-800 shadow-xl shadow-black/40" : "bg-neutral-50 border-zinc-100 hover:border-zinc-200 shadow-sm shadow-zinc-200/50"}`}
                   >
-                    <div className="aspect-video overflow-hidden relative">
+                    <div className="aspect-[4/3] overflow-hidden relative bg-zinc-900">
                        <img 
-                        src={`https://images.unsplash.com/photo-${[
-                          "1460925895917-afdab827c52f",
-                          "1498050108023-c5249f4df085",
-                          "1555066931-4365d14bab8c",
-                          "1517694712202-14dd9538aa97"
-                        ][i % 4]}?w=600&q=80`} 
+                        src={project.images?.[0]} 
                         className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" 
                         alt={project.title} 
                        />
-                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />
+                       <div className="absolute top-4 left-4">
+                          <span className={`inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase border backdrop-blur-md ${isDarkMode ? "bg-black/40 text-white border-white/10" : "bg-white/75 text-zinc-700 border-white/30"}`}>
+                            {project.category}
+                          </span>
+                       </div>
+                       {project.images && project.images.length > 1 && (
+                          <div className="absolute bottom-4 right-4">
+                            <span className="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase bg-black/60 text-white border border-white/10 backdrop-blur-md">
+                              {String(project.images.length).padStart(2, "0")} Images
+                            </span>
+                          </div>
+                       )}
+                       <div className="absolute inset-x-0 bottom-0 p-6">
+                          <p className="text-white/80 text-sm font-medium leading-relaxed">{project.description}</p>
+                       </div>
                     </div>
                     <div className="p-6 flex-1 flex flex-col">
                        <h3 className="text-xl font-bold mb-2 group-hover:text-blue-500 transition-colors uppercase tracking-tight">{project.title}</h3>
                        <p className="text-sm text-zinc-500 font-medium leading-relaxed flex-1">
-                          {project.description}
+                          {project.overview}
                        </p>
                     </div>
                   </motion.div>
                 ))}
               </div>
-            </section>
-
-            {/* Recommendations Section */}
-            <section className={`p-8 rounded-3xl border ${isDarkMode ? "bg-zinc-900/50 border-zinc-800" : "bg-white border-zinc-100 shadow-sm"}`}>
-               <h2 className="text-2xl font-bold mb-8">Recommendations</h2>
-               <div className="relative">
-                  <div className={`p-6 rounded-2xl border ${isDarkMode ? "bg-zinc-950/50 border-zinc-800" : "bg-neutral-50 border-zinc-100"}`}>
-                    <AnimatePresence mode="wait">
-                      <motion.div 
-                        key={activeRecommendation}
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.95 }}
-                        className="space-y-6"
-                      >
-                        <p className={`italic text-lg leading-relaxed text-center ${isDarkMode ? "text-zinc-200" : "text-zinc-700"}`}>
-                          "{RECOMMENDATIONS[activeRecommendation].text}"
-                        </p>
-                        <div className="flex flex-col items-center gap-2">
-                           <p className="font-bold text-center">— {RECOMMENDATIONS[activeRecommendation].name}</p>
-                        </div>
-                      </motion.div>
-                    </AnimatePresence>
-                  </div>
-                  
-                  <div className="flex justify-center gap-2 mt-10">
-                    {RECOMMENDATIONS.map((_, i) => (
-                      <button 
-                        key={i} 
-                        onClick={() => setActiveRecommendation(i)}
-                        className={`h-1.5 rounded-full transition-all duration-500 ${activeRecommendation === i ? "w-8 bg-blue-500" : "w-4 bg-zinc-800 hover:bg-zinc-700"}`}
-                      />
-                    ))}
-                  </div>
-               </div>
             </section>
 
           </div>
@@ -311,7 +291,6 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
                <div className="space-y-4">
                   <h2 className="text-3xl font-extrabold tracking-tight">Gallery</h2>
-                  <p className="text-zinc-500 font-medium max-w-md">Highlighting moments from collaborative sessions and technical workshops.</p>
                </div>
                <div className="flex items-center gap-3">
                   <button 
@@ -365,11 +344,11 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
 
         {/* Contact / Footer Info */}
         <div className={`mt-20 p-12 rounded-[3rem] border flex flex-col lg:flex-row justify-between gap-12 ${isDarkMode ? "bg-zinc-900/30 border-zinc-800" : "bg-white border-zinc-100 shadow-sm"}`}>
-          <div className="max-w-md space-y-8">
+            <div className="max-w-md space-y-8">
             <div>
               <h2 className="text-4xl font-bold mb-6 tracking-tight italic">Let's work together.</h2>
               <p className="text-zinc-500 font-medium leading-relaxed">
-                Available for UI/UX and software freelance projects, with added support in SEO, Google Search Console (GSC), and AI integration.
+                Open to UI/UX and software freelance work, bringing hands-on experience in AI, IoT, mobile apps, and full-stack development to help turn ideas into polished, practical products.
               </p>
             </div>
             

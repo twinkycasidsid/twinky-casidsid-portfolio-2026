@@ -1,26 +1,89 @@
-import { Experience, TechStackCategory, Project, Certification, Recommendation, SocialLink } from './types.ts';
+import { Experience, TechStackCategory, Project, Certification, SocialLink } from './types.ts';
 
 export const EXPERIENCES: Experience[] = [
-  { role: "IT Intern", company: "Lifewood Data Technology", year: "January 2026 - May 2026", current: true },
-  { role: "Interviewer", company: "Public Employment Service Office (PESO)", year: "2020" }
+  { role: "AI Executive Intern", company: "Lifewood Data Technology - Philippines, Cebu City", year: "Jan 2026 - May 2026", current: true },
+  { role: "Interviewer", company: "Public Employment Service Office (PESO), Mandaue City", year: "Apr 2020 - Jun 2020" }
 ];
 
 export const TECH_STACK: TechStackCategory[] = [
   {
     category: "Frontend",
-    skills: ["JavaScript", "React.js", "React Native", "Expo", "Tailwind CSS", "Figma"]
+    skills: ["Next.js", "React.js", "React Native", "TypeScript", "JavaScript", "Expo", "Tailwind CSS", "Vite"]
   },
   {
     category: "Backend",
-    skills: ["Node.js", "Python", "C#", ".NET", "PHP", "Laravel", "SQL"]
+    skills: ["Node.js", "Python", "Java", "C#", ".NET", "FastAPI", "PHP", "Laravel", "SQL"]
   },
   {
-    category: "DevOps & Tools",
-    skills: ["Git", "GitHub", "Supabase", "Firebase", "Android Studio"]
+    category: "Database",
+    skills: ["Microsoft SQL Server", "MySQL", "Firebase", "Supabase"]
+  },
+  {
+    category: "Tools & Platforms",
+    skills: ["Git", "GitHub", "Android Studio", "Unity", "Figma", "VS Code", "Visual Studio", "Google Colab", "Microsoft Office", "Google Workspace"]
   }
 ];
 
+const OPEN_HEART_IMAGES = [
+  "/projects/open-heart/oh1.png",
+  "/projects/open-heart/oh2.png",
+  "/projects/open-heart/oh3.png",
+  "/projects/open-heart/oh4.png",
+  "/projects/open-heart/oh5.png",
+  "/projects/open-heart/oh6.png",
+  "/projects/open-heart/oh7.png"
+];
+
+const THE_LAST_RITUAL_IMAGES = [
+  "/projects/the-last-ritual/tlr1.png",
+  "/projects/the-last-ritual/tlr2.png",
+  "/projects/the-last-ritual/tlr3.png",
+  "/projects/the-last-ritual/tlr4.png",
+  "/projects/the-last-ritual/tlr5.png",
+  "/projects/the-last-ritual/tlr6.png",
+  "/projects/the-last-ritual/tlr7.png",
+  "/projects/the-last-ritual/tlr8.png",
+  "/projects/the-last-ritual/tlr9.png"
+];
+
+const WISENERGY_IMAGES = [
+  "/projects/wisenergy/wis1.png",
+  "/projects/wisenergy/wis2.png"
+];
+
+const PASS_IT_IMAGES = [
+  "/projects/pass-it/pass1.png",
+  "/projects/pass-it/pass2.png",
+  "/projects/pass-it/pass3.png",
+  "/projects/pass-it/pass4.png",
+  "/projects/pass-it/pass5.png",
+  "/projects/pass-it/pass6.png",
+  "/projects/pass-it/pass7.png",
+  "/projects/pass-it/pass8.png",
+  "/projects/pass-it/pass9.png",
+  "/projects/pass-it/pass10.png",
+  "/projects/pass-it/pass11.png"
+];
+
+const SCHOLARTRACK_IMAGES = [
+  "/projects/scholartrack/sch1.jpg"
+];
+
 export const PROJECTS: Project[] = [
+  {
+    title: "Open Heart",
+    category: "AI & WELLNESS",
+    description: "An AI-powered emotional support chatbot built with Gemini API and Supabase.",
+    overview: "A safe space for emotional expression where users can engage with a compassionate AI assistant that provides mindful responses and wellness resources.",
+    features: [
+      "Sentiment-aware conversation using Google Gemini LLM",
+      "Secure and private message history on Supabase",
+      "Resource library for mental health support"
+    ],
+    techStack: ["REACT", "GEMINI API", "SUPABASE", "TAILWIND CSS"],
+    images: OPEN_HEART_IMAGES,
+    link: "AI Wellness Project"
+  },
   {
     title: "The Last Ritual",
     category: "GAME DEVELOPMENT",
@@ -32,173 +95,192 @@ export const PROJECTS: Project[] = [
       "Immersive spatial audio for maximum atmosphere"
     ],
     techStack: ["UNITY 3D", "C#", "HDRP", "BLENDER"],
-    images: [
-      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&q=80"
-    ],
+    images: THE_LAST_RITUAL_IMAGES,
     link: "Unity Game"
   },
   {
     title: "WisEnergy",
     category: "IOT & AI",
-    description: "AI & IoT application for real-time appliance energy monitoring and optimization.",
+    description: "An AI and IoT application for real-time appliance energy monitoring and optimization.",
     overview: "An integrated software-hardware solution that helps households monitor energy consumption of specific appliances and provides AI-driven recommendations for cost reduction.",
     features: [
       "Real-time energy consumption tracking via IoT sensors",
       "AI-driven predictive analytics for energy bills",
       "Cross-platform optimization for React Native"
     ],
-    techStack: ["REACT", "IOT", "PYTHON", "TENSORFLOW"],
-    images: [
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&q=80"
-    ],
+    techStack: ["REACT NATIVE", "IOT", "PYTHON", "FASTAPI"],
+    images: WISENERGY_IMAGES,
     link: "Capstone Project"
   },
   {
-    title: "Open Heart",
-    category: "AI & WELLNESS",
-    description: "AI-powered emotional support chatbot using Gemini API and Supabase.",
-    overview: "A safe space for emotional expression where users can engage with a compassionate AI assistant that provides mindful responses and wellness resources.",
+    title: "Pass It",
+    category: "MOBILE UI/UX",
+    description: "A mobile-first pass management concept focused on streamlined flows and a polished user experience.",
+    overview: "A UI/UX-driven mobile project designed to make digital pass access feel simple, organized, and intuitive across key screens and user actions.",
     features: [
-      "Sentiment-aware conversation using Google Gemini LLM",
-      "Secure and private message history on Supabase",
-      "Resource library for mental health support"
+      "User-friendly mobile flows built around clarity and ease of use",
+      "Structured pass screens that keep important actions easy to reach",
+      "Consistent visual design focused on readability and responsive layouts"
     ],
-    techStack: ["REACT", "GEMINI API", "SUPABASE", "TAILWIND"],
-    images: [
-      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&q=80"
-    ],
-    link: "November 2025"
+    techStack: ["FIGMA", "UI/UX DESIGN", "MOBILE PROTOTYPING", "USER FLOW DESIGN"],
+    images: PASS_IT_IMAGES,
+    link: "UI/UX Project"
   },
   {
-    title: "CodeyGo",
-    category: "MOBILE LEARNING",
-    description: "Gamified mobile learning application for children to learn coding.",
-    overview: "Making code education accessible and fun for children through an interactive world where learning concepts unlocks new stories and levels.",
+    title: "ScholarTrack",
+    category: "DESKTOP SYSTEM",
+    description: "A C# desktop application that automates scholar attendance monitoring and data storage.",
+    overview: "A desktop system built with C# and MS Access that replaces manual logbooks with a more reliable attendance tracking workflow for scholars.",
     features: [
-      "Gamified curriculum covering core CS concepts",
-      "Interactive coding puzzles designed for touchscreens",
-      "Progress tracking for parents and educators"
+      "Time-in and time-out attendance recording",
+      "Local MS Access data storage for school records",
+      "Cleaner workflow than manual logbooks"
     ],
-    techStack: ["REACT NATIVE", "EXPO", "FIREBASE"],
-    images: [
-      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&q=80"
-    ],
-    link: "IBPAP Hackathon"
+    techStack: ["C#", ".NET", "MS ACCESS", "DESKTOP UI"],
+    images: SCHOLARTRACK_IMAGES,
+    link: "Application Development"
   }
 ];
 
 export const CERTIFICATIONS: Certification[] = [
   { 
-    title: "Best Project Award in Application Development (Top 3)", 
-    issuer: "CASIDSID", 
-    year: "2025",
-    description: "Awarded Top 3 Best Project in Application Development (APPSDEV) during 2nd year college for developing ScholarTrack, a C# desktop application integrated with MS Access for local data storage. The system automated scholar attendance monitoring by recording time-ins and time-outs, replacing manual logbooks with a more reliable and efficient solution for academic record management.",
+    title: "Outstanding Capstone Project", 
+    issuer: "University of Cebu - Lapu-Lapu & Mandaue", 
+    year: "June 2026",
+    description: "Recognized for outstanding performance in the capstone project, reflecting strong technical execution, collaboration, and presentation skills.",
     image: "/certificates/CASIDSID, TWINKY_Top3BestAPPSDEV.jpg",
     featured: true
   },
   { 
-    title: "Dean's List . Top 20 BSIT Students", 
-    issuer: "CASIDSID", 
-    year: "2025",
-    description: "Recognized as one of the Top 20 BSIT students for outstanding academic performance, dedication, and consistent excellence in Information Technology studies.",
-    image: "/certificates/CASIDSID, TWINKY_Top20DeansList.jpg",
-    featured: true
+    title: "Best in Poster/Exhibit Booth", 
+    issuer: "University of Cebu - Lapu-Lapu & Mandaue", 
+    year: "June 2026",
+    description: "Recognized for delivering an effective and well-presented poster and exhibit booth during the capstone showcase.",
+    image: "/certificates/CASIDSID, TWINKY_Top3BestAPPSDEV.jpg"
   },
   { 
-    title: "IBM SkillsBuild . Artificial Intelligence Fundamentals", 
-    issuer: "IBM SkillsBuild", 
-    year: "2025",
-    description: "Successfully completed the IBM SkillsBuild course on Artificial Intelligence Fundamentals, covering core AI concepts, machine learning basics, and practical applications of artificial intelligence technologies.",
+    title: "PhilNITS Information Technology Passport (IP) Certification Examination", 
+    issuer: "PhilNITS", 
+    year: "June 2026",
+    description: "Completed the IT Passport certification examination, demonstrating foundational knowledge in IT management, systems, and digital technology concepts.",
     image: "/certificates/CASIDSID, TWINKY_IBMSkillsBuild-AIFundamentals.png",
     featured: true
   },
   { 
-    title: "PSITS 2nd Year Representative", 
-    issuer: "PSITS", 
-    year: "2025",
-    description: "Recognized for active leadership, participation, and dedication as the 2nd Year Representative of Philippine Society of Information Technology Students.",
-    image: "/certificates/CASIDSID, TWINKY_PSITS2ndYearRep.jpg",
+    title: "UC CCS 5th Research Congress - Poster Presentation Champion", 
+    issuer: "University of Cebu", 
+    year: "May 2026",
+    description: "Recognized as poster presentation champion for presenting a clear, technically sound, and well-defended research output.",
+    image: "/certificates/CASIDSID, TWINKY_Top20DeansList.jpg",
     featured: true
   },
   { 
-    title: "3rd Place . Networking Competition . 11th UC ICT Congress 2025", 
-    issuer: "ICT Congress", 
-    year: "2025",
-    description: "Achieved 3rd Place in the Networking Competition during the UC ICT Congress 2025, demonstrating strong technical expertise in network configuration, troubleshooting, and problem-solving.",
-    image: "/certificates/CASIDSID, TWINKY_3rdplaceNetworking.jpg"
+    title: "Consistent Dean's Lister", 
+    issuer: "University of Cebu - Lapu-Lapu & Mandaue", 
+    year: "2022 - Present",
+    description: "Recognized for maintaining consistent academic excellence throughout the BSIT program.",
+    image: "/certificates/CASIDSID, TWINKY_Top20DeansList.jpg",
+    featured: true
   },
   { 
-    title: "Canva Design Certification", 
+    title: "UCLM Academic Scholar", 
+    issuer: "University of Cebu - Lapu-Lapu & Mandaue", 
+    year: "2022 - Present",
+    description: "Granted academic scholarship status in recognition of strong academic performance.",
+    image: "/certificates/CASIDSID, TWINKY_Top20DeansList.jpg",
+    featured: true
+  },
+  { 
+    title: "Canva for Work", 
     issuer: "Canva", 
-    year: "2025",
-    description: "Successfully completed the Canva Design Certification program focused on visual design principles, content creation, and digital graphic design tools.",
+    year: "August 2025",
+    description: "Completed Canva for Work training focused on visual design, content creation, and professional presentation design.",
     image: "/certificates/CASIDSID, TWINKY_Canva.jpg"
   },
   { 
-    title: "CCNA 7 . Switching, Routing, and Wireless Essentials", 
-    issuer: "Cisco", 
-    year: "2025",
-    description: "Completed the Cisco Networking Academy CCNA 7 course on Switching, Routing, and Wireless Essentials, covering network infrastructure, routing protocols, wireless networking, and network security fundamentals.",
-    image: "/certificates/CASIDSID, TWINKY_CCNA7.jpg"
+    title: "IBM SkillsBuild . Artificial Intelligence Fundamentals", 
+    issuer: "IBM SkillsBuild", 
+    year: "July 2025",
+    description: "Completed IBM SkillsBuild training on AI fundamentals, covering core AI concepts, machine learning basics, and practical applications.",
+    image: "/certificates/CASIDSID, TWINKY_IBMSkillsBuild-AIFundamentals.png",
+    featured: true
   },
   { 
-    title: "C# Programming Workshop", 
-    issuer: "CASIDSID", 
-    year: "2025",
-    description: "Participated in a C# Programming Workshop focused on software development fundamentals, object-oriented programming, and application development techniques.",
-    image: "/certificates/CASIDSID, TWINKY_CSharpWorkshop.png"
+    title: "IBM SkillsBuild . Working in a Digital World: Professional Skills", 
+    issuer: "IBM SkillsBuild", 
+    year: "July 2025",
+    description: "Completed training focused on workplace readiness, productivity, and digital collaboration skills.",
+    image: "/certificates/CASIDSID, TWINKY_IBMSkillsBuild-WorkingInADigitalWord.png"
   },
   { 
-    title: "Certificate of Participation . Networking Contest . College Days 2025", 
-    issuer: "CASIDSID", 
-    year: "2025",
-    description: "Awarded a Certificate of Participation for competing in the Networking Contest during College Days 2025, demonstrating technical knowledge and teamwork in networking activities.",
+    title: "IBPAP Hackathon Challenge Participant", 
+    issuer: "IBPAP", 
+    year: "July 2025",
+    description: "Participated in the IBPAP Hackathon Challenge and contributed to an innovation-focused development experience.",
     image: "/certificates/CASIDSID, TWINKY_COPNetworkingCollegeDays.jpg"
+  },
+  { 
+    title: "11th ICT Congress Networking Competition - 3rd Placer", 
+    issuer: "University of Cebu", 
+    year: "April 2025",
+    description: "Placed third in the networking competition, demonstrating strong troubleshooting and network configuration skills.",
+    image: "/certificates/CASIDSID, TWINKY_3rdplaceNetworking.jpg"
+  },
+  { 
+    title: "UCLM College Days 2025 TECH Talk: Database Programming", 
+    issuer: "University of Cebu - Lapu-Lapu & Mandaue", 
+    year: "April 2025",
+    description: "Participated in a technical talk covering database concepts, query development, and application integration.",
+    image: "/certificates/CASIDSID, TWINKY_TECHTalkDBProgramming.jpg"
+  },
+  { 
+    title: "UCLM College Days 2025 TECH Talk: Networking", 
+    issuer: "University of Cebu - Lapu-Lapu & Mandaue", 
+    year: "April 2025",
+    description: "Participated in a technical talk on networking fundamentals, infrastructure, and modern communication technologies.",
+    image: "/certificates/CASIDSID, TWINKY_TECHTalkNetworking.jpg"
+  },
+  { 
+    title: "UC Days 2025 Networking Competition - Champion", 
+    issuer: "University of Cebu", 
+    year: "March 2025",
+    description: "Won the networking competition and demonstrated strong technical and problem-solving skills.",
+    image: "/certificates/CASIDSID, TWINKY_3rdplaceNetworking.jpg"
   },
   { 
     title: "Cisco Ethical Hacker", 
     issuer: "Cisco", 
-    year: "2025",
-    description: "Completed the Cisco Networking Academy Ethical Hacker program, covering cybersecurity fundamentals, ethical hacking concepts, vulnerability assessment, and network security practices.",
+    year: "March 2025",
+    description: "Completed the Cisco Ethical Hacker program covering cybersecurity fundamentals, vulnerability assessment, and ethical hacking practices.",
     image: "/certificates/CASIDSID, TWINKY_EthicalHacker.jpg"
   },
   { 
-    title: "IBM SkillsBuild: Getting Started with AI", 
-    issuer: "IBM SkillsBuild", 
-    year: "2025",
-    description: "Foundational training on AI concepts, applications, and introductory workflows.",
-    image: "/certificates/CASIDSID, TWINKY_IBMSkillsBuild-GettingStartedWithAI.png"
+    title: "CCNA: Switching, Routing, and Wireless Essentials", 
+    issuer: "Cisco", 
+    year: "March 2025",
+    description: "Completed the CCNA course on switching, routing, wireless essentials, and network security fundamentals.",
+    image: "/certificates/CASIDSID, TWINKY_CCNA7.jpg"
   },
   { 
-    title: "IBM SkillsBuild: Working in a Digital World", 
-    issuer: "IBM SkillsBuild", 
-    year: "2025",
-    description: "Certificate covering workplace readiness, productivity, and digital collaboration skills.",
-    image: "/certificates/CASIDSID, TWINKY_IBMSkillsBuild-WorkingInADigitalWord.png"
+    title: "PSITS 2nd Year Representative", 
+    issuer: "PSITS-UCLM", 
+    year: "September 2023 - June 2024",
+    description: "Served as 2nd Year Representative and contributed to student leadership, engagement, and coordination activities.",
+    image: "/certificates/CASIDSID, TWINKY_PSITS2ndYearRep.jpg"
   },
   { 
-    title: "Tech Talk . Database Programming", 
-    issuer: "CASIDSID", 
-    year: "2025",
-    description: "Participated in the Tech Talk on Database Programming during College Days 2025, focusing on database concepts, query development, and application integration techniques.",
-    image: "/certificates/CASIDSID, TWINKY_TECHTalkDBProgramming.jpg"
+    title: "3rd Place in Applications Development", 
+    issuer: "University of Cebu", 
+    year: "June 2024",
+    description: "Placed third in the Applications Development competition, highlighting practical software development skills.",
+    image: "/certificates/CASIDSID, TWINKY_Top3BestAPPSDEV.jpg"
   },
   { 
-    title: "Tech Talk . Networking", 
-    issuer: "CASIDSID", 
-    year: "2025",
-    description: "Participated in the Tech Talk on Networking during College Days 2025, discussing networking fundamentals, infrastructure, and modern communication technologies.",
-    image: "/certificates/CASIDSID, TWINKY_TECHTalkNetworking.jpg"
-  }
-];
-
-export const RECOMMENDATIONS: Recommendation[] = [
-  {
-    text: "Twinky is a highly motivated student with a strong foundation in UI/UX and AI. Her leadership in capstone projects is exceptional.",
-    name: "Dr. Janette Q. Tanquis",
-    title: "Dean, College of Computer Studies"
+    title: "With High Honors", 
+    issuer: "University of Cebu - Lapu-Lapu & Mandaue", 
+    year: "June 2022",
+    description: "Graduated senior high school with high honors.",
+    image: "/certificates/CASIDSID, TWINKY_Top20DeansList.jpg"
   }
 ];
 

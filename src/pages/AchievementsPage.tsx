@@ -29,7 +29,7 @@ export default function AchievementsPage({ isDarkMode }: AchievementsPageProps) 
           <div className="space-y-4">
             <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">Certifications</h1>
             <p className="text-xl text-zinc-500 font-medium max-w-2xl">
-              Professional credentials and training in Data Analysis, Python, SQL, AI, Prompt Engineering, and IT Resilience.
+              Academic honors, certifications, and technical recognitions across AI, web development, mobile development, networking, and leadership.
             </p>
           </div>
         </header>
