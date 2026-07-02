@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { 
   MapPin, 
-  Calendar, 
   Mail, 
   Linkedin, 
   Github, 
@@ -15,7 +14,8 @@ import {
   Facebook,
   Instagram,
   ChevronLeft,
-  X
+  X,
+  Download
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { EXPERIENCES, TECH_STACK, PROJECTS, CERTIFICATIONS, SOCIAL_LINKS } from "../constants";
@@ -32,10 +32,14 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedCertificate, setSelectedCertificate] = useState<Certification | null>(null);
   const [activeProjectImage, setActiveProjectImage] = useState(0);
+  const [showChatMaintenance, setShowChatMaintenance] = useState(false);
 
   const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
   const [selectedGalleryImage, setSelectedGalleryImage] = useState<string | null>(null);
-  const featuredCertifications = CERTIFICATIONS.filter((cert) => cert.featured);
+  const featuredProjects = PROJECTS.filter((project) =>
+    ["PassIT", "AIRA (AI Recruitment Assistant)", "WisEnergy", "The Last Ritual"].includes(project.title)
+  );
+  const featuredCertifications = CERTIFICATIONS.filter((cert) => cert.featured).slice(0, 5);
 
   const galleryImages = [
     "/gallery/img1.jpg",
@@ -73,6 +77,25 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (!selectedGalleryImage) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setSelectedGalleryImage(null);
+      }
+      if (event.key === "ArrowLeft") {
+        setActiveGalleryIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+      }
+      if (event.key === "ArrowRight") {
+        setActiveGalleryIndex((prev) => (prev + 1) % galleryImages.length);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedGalleryImage, galleryImages.length]);
+
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
@@ -101,7 +124,7 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
                 </div>
                 <div className="flex items-center justify-center md:justify-start gap-2 text-zinc-500 font-medium tracking-wide">
                   <MapPin className="w-5 h-5" />
-                  <span>Mandaue City, Cebu</span>
+                  <span>Mandaue City, Cebu, Philippines</span>
                 </div>
               </div>
               
@@ -114,24 +137,31 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
             </div>
 
             <p className="text-xl font-bold tracking-tight text-zinc-400">
-               BSIT Graduate <span className="mx-2 text-zinc-700">|</span> Software Developer <span className="mx-2 text-zinc-700">|</span> UI/UX Designer <span className="mx-2 text-zinc-700">|</span> AI & IoT Developer
+               BSIT Graduate <span className="mx-2 text-zinc-700">|</span> Software Developer <span className="mx-2 text-zinc-700">|</span> UI/UX Designer <span className="mx-2 text-zinc-700">|</span> AI Developer
             </p>
 
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
-              <button className={`inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold transition-all active:scale-95 ${isDarkMode ? "bg-white text-black hover:bg-zinc-100" : "bg-zinc-900 text-white hover:bg-zinc-800"}`}>
-                <Calendar className="w-5 h-5" />
-                Schedule a Call
-              </button>
-              <button className={`inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold border transition-all active:scale-95 ${isDarkMode ? "border-zinc-800 hover:bg-zinc-900 text-zinc-300" : "border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 shadow-sm"}`}>
+              <a
+                href="/Twinky Casidsid CV.pdf"
+                download
+                className={`inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold transition-all active:scale-95 ${isDarkMode ? "bg-white text-black hover:bg-zinc-100" : "bg-zinc-900 text-white hover:bg-zinc-800"}`}
+              >
+                <Download className="w-5 h-5" />
+                Download CV
+              </a>
+              <a
+                href="mailto:twinkycasidsidx@gmail.com"
+                className={`inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold border transition-all active:scale-95 ${isDarkMode ? "border-zinc-800 hover:bg-zinc-900 text-zinc-300" : "border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 shadow-sm"}`}
+              >
                 <Mail className="w-5 h-5" />
                 Send Email
-              </button>
+              </a>
             </div>
           </div>
         </header>
 
         {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-12 gap-8 items-start">
+        <div className="grid lg:grid-cols-12 gap-8 items-start lg:auto-rows-fr">
           
           {/* Left Column (Left Sidebar-ish) */}
           <div className="lg:col-span-5 space-y-8">
@@ -175,30 +205,8 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
                     className={`p-5 rounded-2xl border transition-all cursor-pointer ${isDarkMode ? "bg-zinc-950/50 border-zinc-800 hover:border-zinc-700" : "bg-neutral-50 border-zinc-100 hover:border-zinc-200"}`}
                   >
                     <h4 className="font-bold">{cert.title}</h4>
-                    <p className="text-sm text-zinc-500 mt-1 leading-relaxed line-clamp-3">{cert.description}</p>
+                    <p className="text-sm text-zinc-500 mt-1 leading-relaxed line-clamp-2">{cert.description}</p>
                   </motion.div>
-                ))}
-              </div>
-            </section>
-
-            {/* Tech Stack Section */}
-            <section className={`p-8 rounded-3xl border ${isDarkMode ? "bg-zinc-900/50 border-zinc-800" : "bg-white border-zinc-100 shadow-sm"}`}>
-              <h2 className="text-2xl font-bold mb-8">Tech Stack</h2>
-              <div className="grid gap-4 sm:grid-cols-2">
-                {TECH_STACK.map((cat) => (
-                  <div
-                    key={cat.category}
-                    className={`rounded-2xl border p-5 space-y-4 h-full ${isDarkMode ? "bg-zinc-950/50 border-zinc-800" : "bg-neutral-50 border-zinc-200/70"}`}
-                  >
-                    <h3 className="text-sm font-bold uppercase tracking-widest text-zinc-500">{cat.category}</h3>
-                    <div className="flex flex-wrap gap-2.5">
-                      {cat.skills.map((skill) => (
-                        <span key={skill} className={`px-3.5 py-2 rounded-xl text-sm font-bold border ${isDarkMode ? "bg-zinc-900 border-zinc-800 text-zinc-200" : "bg-white border-zinc-200 text-zinc-700"}`}>
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
                 ))}
               </div>
             </section>
@@ -206,7 +214,7 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
           </div>
 
           {/* Right Column (Primary Content) */}
-          <div className="lg:col-span-7 space-y-8">
+          <div className="lg:col-span-7 flex flex-col gap-8 h-full">
             
             {/* Experience Section */}
             <section className={`p-8 rounded-3xl border ${isDarkMode ? "bg-zinc-900/50 border-zinc-800" : "bg-white border-zinc-100 shadow-sm"}`}>
@@ -233,13 +241,13 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
             </section>
 
             {/* Projects Section */}
-            <section className={`p-8 rounded-3xl border ${isDarkMode ? "bg-zinc-900/50 border-zinc-800" : "bg-white border-zinc-100 shadow-sm"}`}>
+            <section className={`p-8 rounded-3xl border flex-1 flex flex-col ${isDarkMode ? "bg-zinc-900/50 border-zinc-800" : "bg-white border-zinc-100 shadow-sm"}`}>
               <div className="flex items-center justify-between mb-8">
                 <h2 className="text-2xl font-bold">Projects</h2>
                 <Link to="/projects" className="text-sm font-bold text-zinc-500 hover:text-blue-500 transition-colors">View All &rarr;</Link>
               </div>
-              <div className="grid md:grid-cols-2 gap-6">
-                {PROJECTS.map((project) => (
+              <div className="grid md:grid-cols-2 gap-6 auto-rows-fr flex-1">
+                {featuredProjects.map((project) => (
                   <motion.div 
                     key={project.title}
                     whileHover={{ y: -4 }}
@@ -247,35 +255,22 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
                       setSelectedProject(project);
                       setActiveProjectImage(0);
                     }}
-                    className={`group flex flex-col rounded-3xl border overflow-hidden transition-all cursor-pointer ${isDarkMode ? "bg-zinc-950 border-zinc-900 hover:border-zinc-800 shadow-xl shadow-black/40" : "bg-neutral-50 border-zinc-100 hover:border-zinc-200 shadow-sm shadow-zinc-200/50"}`}
+                    className={`group flex h-full flex-col rounded-3xl border overflow-hidden transition-all cursor-pointer ${isDarkMode ? "bg-zinc-950 border-zinc-900 hover:border-zinc-800 shadow-xl shadow-black/40" : "bg-neutral-50 border-zinc-100 hover:border-zinc-200 shadow-sm shadow-zinc-200/50"}`}
                   >
-                    <div className="aspect-[4/3] overflow-hidden relative bg-zinc-900">
+                    <div className="aspect-[5/4] overflow-hidden relative bg-zinc-900">
                        <img 
                         src={project.images?.[0]} 
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" 
                         alt={project.title} 
                        />
-                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />
-                       <div className="absolute top-4 left-4">
-                          <span className={`inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase border backdrop-blur-md ${isDarkMode ? "bg-black/40 text-white border-white/10" : "bg-white/75 text-zinc-700 border-white/30"}`}>
-                            {project.category}
-                          </span>
-                       </div>
-                       {project.images && project.images.length > 1 && (
-                          <div className="absolute bottom-4 right-4">
-                            <span className="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase bg-black/60 text-white border border-white/10 backdrop-blur-md">
-                              {String(project.images.length).padStart(2, "0")} Images
-                            </span>
-                          </div>
-                       )}
-                       <div className="absolute inset-x-0 bottom-0 p-6">
-                          <p className="text-white/80 text-sm font-medium leading-relaxed">{project.description}</p>
-                       </div>
                     </div>
-                    <div className="p-6 flex-1 flex flex-col">
-                       <h3 className="text-xl font-bold mb-2 group-hover:text-blue-500 transition-colors uppercase tracking-tight">{project.title}</h3>
-                       <p className="text-sm text-zinc-500 font-medium leading-relaxed flex-1">
-                          {project.overview}
+                    <div className="p-6 md:p-7 flex-1 flex flex-col">
+                       <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500 mb-3">{project.category}</p>
+                       <h3 className="text-xl font-bold mb-3 group-hover:text-blue-500 transition-colors uppercase tracking-tight">{project.title}</h3>
+                       <p className="text-sm text-zinc-500 font-medium leading-relaxed line-clamp-2 flex-1">
+                          {project.description}
                        </p>
                     </div>
                   </motion.div>
@@ -286,6 +281,45 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
           </div>
         </div>
 
+        <section className={`mt-8 p-8 md:p-12 rounded-[3.5rem] border overflow-hidden ${isDarkMode ? "bg-zinc-900/50 border-zinc-800" : "bg-white border-zinc-100 shadow-sm"}`}>
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+               <div className="space-y-4">
+                  <h2 className="text-3xl font-extrabold tracking-tight">Tech Stack</h2>
+                  <p className="text-zinc-500 font-medium max-w-2xl">
+                    Core tools and technologies used across frontend, backend, database, and design workflows.
+                  </p>
+               </div>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+              {TECH_STACK.map((cat, index) => (
+                <div
+                  key={cat.category}
+                  className={`rounded-[1.75rem] border p-6 space-y-5 h-full relative overflow-hidden ${isDarkMode ? "bg-zinc-950/60 border-zinc-800" : "bg-neutral-50 border-zinc-200/70"}`}
+                >
+                  <div className={`absolute inset-x-0 top-0 h-px ${isDarkMode ? "bg-white/10" : "bg-zinc-300/80"}`} />
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-zinc-500">Category</p>
+                      <h3 className="mt-2 text-lg font-bold tracking-tight">{cat.category}</h3>
+                    </div>
+                    <span className={`inline-flex items-center justify-center rounded-2xl border min-w-10 h-10 text-xs font-mono ${isDarkMode ? "bg-zinc-900 border-zinc-800 text-zinc-300" : "bg-white border-zinc-200 text-zinc-600"}`}>
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <div className="h-px bg-zinc-800/10" />
+                  <div className="flex flex-wrap gap-2.5 content-start">
+                    {cat.skills.map((skill) => (
+                      <span key={skill} className={`px-3.5 py-2 rounded-xl text-sm font-bold border transition-all ${isDarkMode ? "bg-zinc-900 border-zinc-800 text-zinc-200 hover:bg-zinc-800" : "bg-white border-zinc-200 text-zinc-700 hover:bg-zinc-100"}`}>
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+        </section>
+
         {/* Full-width Gallery Section */}
         <section className={`mt-8 p-8 md:p-12 rounded-[3.5rem] border overflow-hidden ${isDarkMode ? "bg-zinc-900/50 border-zinc-800" : "bg-white border-zinc-100 shadow-sm"}`}>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
@@ -295,12 +329,14 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
                <div className="flex items-center gap-3">
                   <button 
                     onClick={() => setActiveGalleryIndex(prev => (prev - 1 + galleryImages.length) % galleryImages.length)}
+                    aria-label="Previous gallery image"
                     className={`p-3 rounded-full border transition-all ${isDarkMode ? "bg-zinc-950 border-zinc-800 hover:bg-zinc-800" : "bg-neutral-50 border-zinc-200 hover:bg-white"}`}
                   >
                     <ChevronLeft className="w-5 h-5" />
                   </button>
                   <button 
                     onClick={() => setActiveGalleryIndex(prev => (prev + 1) % galleryImages.length)}
+                    aria-label="Next gallery image"
                     className={`p-3 rounded-full border transition-all ${isDarkMode ? "bg-zinc-950 border-zinc-800 hover:bg-zinc-800" : "bg-neutral-50 border-zinc-200 hover:bg-white"}`}
                   >
                     <ChevronRight className="w-5 h-5" />
@@ -308,7 +344,27 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
                </div>
             </div>
 
-            <div className="relative aspect-[21/9] rounded-[2.5rem] overflow-hidden group cursor-pointer" onClick={() => setSelectedGalleryImage(galleryImages[activeGalleryIndex])}>
+            <div
+              className="relative aspect-[21/9] rounded-[2.5rem] overflow-hidden group cursor-pointer touch-pan-y"
+              onClick={() => setSelectedGalleryImage(galleryImages[activeGalleryIndex])}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setSelectedGalleryImage(galleryImages[activeGalleryIndex]);
+                }
+                if (e.key === "ArrowLeft") {
+                  e.preventDefault();
+                  setActiveGalleryIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+                }
+                if (e.key === "ArrowRight") {
+                  e.preventDefault();
+                  setActiveGalleryIndex((prev) => (prev + 1) % galleryImages.length);
+                }
+              }}
+              tabIndex={0}
+              role="button"
+              aria-label="Open gallery image"
+            >
                 <AnimatePresence mode="wait">
                   <motion.img 
                     key={activeGalleryIndex}
@@ -331,6 +387,7 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
                    {galleryImages.map((_, i) => (
                      <button 
                       key={i}
+                      aria-label={`Go to gallery image ${i + 1}`}
                       onClick={(e) => {
                         e.stopPropagation();
                         setActiveGalleryIndex(i);
@@ -375,33 +432,37 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
 
           <div className="flex-1 max-w-lg space-y-4">
              <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-6">Get in Touch</p>
-             <div className={`p-6 rounded-2xl border flex items-center justify-between group cursor-pointer transition-all ${isDarkMode ? "bg-zinc-950 border-zinc-800 hover:bg-zinc-900" : "bg-neutral-50 border-zinc-200 hover:bg-white"}`}>
+             <a href="mailto:twinkycasidsidx@gmail.com" className={`p-6 rounded-2xl border flex items-center justify-between group cursor-pointer transition-all ${isDarkMode ? "bg-zinc-950 border-zinc-800 hover:bg-zinc-900" : "bg-neutral-50 border-zinc-200 hover:bg-white"}`}>
                 <div className="flex items-center gap-4">
                    <Mail className="w-6 h-6 text-zinc-500" />
                    <div>
                       <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-600">Email</p>
-                      <p className="font-bold">twinkycasidsid@gmail.com</p>
+                      <p className="font-bold">twinkycasidsidx@gmail.com</p>
                    </div>
                 </div>
                 <ChevronRight className="w-5 h-5 text-zinc-800 opacity-0 group-hover:opacity-100 transition-all" />
-             </div>
+             </a>
 
-             <div className={`p-6 rounded-2xl border flex items-center justify-between group cursor-pointer transition-all ${isDarkMode ? "bg-zinc-950 border-zinc-800 hover:bg-zinc-900" : "bg-neutral-50 border-zinc-200 hover:bg-white"}`}>
+             <a
+                href="/Twinky Casidsid CV.pdf"
+                download
+                className={`p-6 rounded-2xl border flex items-center justify-between group cursor-pointer transition-all ${isDarkMode ? "bg-zinc-950 border-zinc-800 hover:bg-zinc-900" : "bg-neutral-50 border-zinc-200 hover:bg-white"}`}
+             >
                 <div className="flex items-center gap-4">
-                   <Calendar className="w-6 h-6 text-zinc-500" />
+                   <Download className="w-6 h-6 text-zinc-500" />
                    <div>
-                      <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-600">Let's Talk</p>
-                      <p className="font-bold">Schedule a Call</p>
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-600">Curriculum Vitae</p>
+                      <p className="font-bold">Download CV</p>
                    </div>
                 </div>
                 <ChevronRight className="w-5 h-5 text-zinc-800 opacity-0 group-hover:opacity-100 transition-all" />
-             </div>
+             </a>
           </div>
         </div>
 
         {/* Final Footer */}
         <footer className="mt-20 text-center space-y-2">
-           <p className="text-sm font-bold text-zinc-500 uppercase tracking-widest">© 2026 Twinky Casidsid. All Rights Reserved.</p>
+           <p className="text-sm font-bold text-zinc-500 uppercase tracking-widest">Â© 2026 Twinky Casidsid. All Rights Reserved.</p>
         </footer>
 
       </div>
@@ -421,7 +482,10 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
             </motion.button>
           )}
         </AnimatePresence>
-        <button className={`flex items-center gap-3 px-8 py-4 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-all group font-bold tracking-tight ${isDarkMode ? "bg-white text-black" : "bg-zinc-950 text-white"}`}>
+        <button
+          onClick={() => setShowChatMaintenance(true)}
+          className={`flex items-center gap-3 px-8 py-4 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-all group font-bold tracking-tight ${isDarkMode ? "bg-white text-black" : "bg-zinc-950 text-white"}`}
+        >
           <MessageCircle className="w-6 h-6" />
           <span>Chat with Twinky</span>
         </button>
@@ -502,6 +566,67 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
                   <X className="w-8 h-8" />
                 </button>
              </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {showChatMaintenance && (
+          <div className="fixed inset-0 z-[220] flex items-center justify-center p-4 md:p-12">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowChatMaintenance(false)}
+              className="absolute inset-0 bg-black/80 backdrop-blur-xl"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.92, y: 12 }}
+              className={`relative w-full max-w-lg rounded-[2rem] border p-8 shadow-2xl ${isDarkMode ? "bg-zinc-950 border-zinc-800 text-white" : "bg-white border-zinc-200 text-zinc-900"}`}
+            >
+              <button
+                onClick={() => setShowChatMaintenance(false)}
+                className={`absolute right-5 top-5 rounded-full border p-2 transition-all ${isDarkMode ? "border-zinc-800 bg-zinc-900 text-zinc-300 hover:text-white" : "border-zinc-200 bg-zinc-50 text-zinc-500 hover:text-zinc-900"}`}
+                aria-label="Close chat maintenance notice"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              <div className="space-y-5">
+                <div className={`inline-flex items-center rounded-full border px-4 py-2 text-[10px] font-bold uppercase tracking-[0.22em] ${isDarkMode ? "border-zinc-800 bg-zinc-900 text-zinc-400" : "border-zinc-200 bg-zinc-50 text-zinc-500"}`}>
+                  Chat Interface
+                </div>
+                <div className="space-y-3">
+                  <h2 className="text-3xl font-extrabold tracking-tight">Still under maintenance.</h2>
+                  <p className={`font-medium leading-relaxed ${isDarkMode ? "text-zinc-400" : "text-zinc-600"}`}>
+                    Twinky&apos;s chat desk is currently being fine-tuned behind the scenes. The conversation UI is on pause while responses, workflows, and a few clever details are being polished.
+                  </p>
+                </div>
+                <div className={`rounded-[1.5rem] border p-5 ${isDarkMode ? "border-zinc-800 bg-zinc-900/70" : "border-zinc-200 bg-zinc-50"}`}>
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">Status Note</p>
+                  <p className={`mt-3 text-sm leading-relaxed ${isDarkMode ? "text-zinc-300" : "text-zinc-700"}`}>
+                    Incoming messages are sleeping in draft mode. For now, the fastest way to reach Twinky is still through email.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  <a
+                    href="mailto:twinkycasidsidx@gmail.com"
+                    className={`inline-flex items-center gap-2 rounded-xl px-5 py-3 font-bold transition-all ${isDarkMode ? "bg-white text-black hover:bg-zinc-100" : "bg-zinc-900 text-white hover:bg-zinc-800"}`}
+                  >
+                    <Mail className="w-4 h-4" />
+                    Email Instead
+                  </a>
+                  <button
+                    onClick={() => setShowChatMaintenance(false)}
+                    className={`inline-flex items-center gap-2 rounded-xl border px-5 py-3 font-bold transition-all ${isDarkMode ? "border-zinc-800 text-zinc-300 hover:bg-zinc-900" : "border-zinc-200 text-zinc-700 hover:bg-zinc-50"}`}
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </motion.div>
           </div>
         )}
       </AnimatePresence>

@@ -17,6 +17,7 @@ export interface Project {
   tag?: string;
   category?: string;
   overview?: string;
+  roles?: string[];
   features?: string[];
   techStack?: string[];
   images?: string[];
@@ -28,6 +29,7 @@ export interface Certification {
   image?: string;
   description?: string;
   year?: string;
+  category?: string;
   featured?: boolean;
 }
 

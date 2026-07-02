@@ -123,6 +123,20 @@ export function ProjectModal({ project, onClose, isDarkMode, activeImage, setAct
                   </div>
                 </section>
 
+                {project.roles && project.roles.length > 0 && (
+                  <section className="space-y-6">
+                    <h3 className="text-xs font-bold uppercase tracking-[0.1em] text-zinc-500">My Role</h3>
+                    <div className="space-y-5">
+                      {project.roles.map((role, i) => (
+                        <div key={role} className="flex gap-4">
+                          <span className="text-xs font-bold font-mono text-zinc-700 mt-1">{String(i + 1).padStart(2, '0')}</span>
+                          <p className={`font-bold ${isDarkMode ? "text-zinc-200" : "text-zinc-700"}`}>{role}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+                )}
+
                 <section className="space-y-4">
                   <h3 className="text-xs font-bold uppercase tracking-[0.1em] text-zinc-500">Tech Stack</h3>
                   <div className="flex flex-wrap gap-2">

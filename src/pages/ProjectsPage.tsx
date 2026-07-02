@@ -51,6 +51,8 @@ export default function ProjectsPage({ isDarkMode }: ProjectsPageProps) {
               <div className="aspect-[4/3] overflow-hidden relative bg-zinc-900">
                 <img 
                   src={project.images?.[0]} 
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" 
                   alt={project.title} 
                 />
@@ -72,8 +74,8 @@ export default function ProjectsPage({ isDarkMode }: ProjectsPageProps) {
               <div className="p-8 space-y-6">
                 <div className="space-y-2">
                   <h3 className="text-2xl font-bold transition-colors uppercase tracking-tight">{project.title}</h3>
-                  <p className="text-zinc-500 font-medium leading-relaxed">
-                    {project.overview}
+                  <p className="text-zinc-500 font-medium leading-relaxed line-clamp-2">
+                    {project.description}
                   </p>
                 </div>
                 
