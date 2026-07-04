@@ -14,7 +14,7 @@ export function ProjectModal({ project, onClose, isDarkMode, activeImage, setAct
   return (
     <AnimatePresence>
       {project && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 md:p-10">
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -27,18 +27,17 @@ export function ProjectModal({ project, onClose, isDarkMode, activeImage, setAct
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className={`relative w-full max-w-6xl h-full max-h-[85vh] rounded-[2.5rem] overflow-hidden border shadow-2xl flex flex-col lg:flex-row ${isDarkMode ? "bg-zinc-950 border-zinc-800" : "bg-white border-zinc-200"}`}
+            className={`relative flex h-full max-h-[calc(100dvh-1.5rem)] w-full max-w-6xl flex-col overflow-hidden rounded-[1.75rem] border shadow-2xl sm:max-h-[calc(100dvh-2rem)] sm:rounded-[2.5rem] md:max-h-[85vh] lg:flex-row ${isDarkMode ? "bg-zinc-950 border-zinc-800" : "bg-white border-zinc-200"}`}
           >
-            {/* Fixed Close Button */}
             <button 
               onClick={onClose}
-              className={`absolute top-6 right-6 z-[110] p-3 rounded-full transition-all border shadow-lg ${isDarkMode ? "bg-zinc-900/80 backdrop-blur-md border-zinc-800 text-zinc-400 hover:text-white hover:bg-zinc-800" : "bg-white/80 backdrop-blur-md border-zinc-200 text-zinc-500 hover:text-black hover:bg-zinc-50"}`}
+              className={`absolute right-3 top-3 z-[110] rounded-full border p-2.5 shadow-lg transition-all sm:right-6 sm:top-6 sm:p-3 ${isDarkMode ? "bg-zinc-900/80 backdrop-blur-md border-zinc-800 text-zinc-400 hover:text-white hover:bg-zinc-800" : "bg-white/80 backdrop-blur-md border-zinc-200 text-zinc-500 hover:text-black hover:bg-zinc-50"}`}
+              aria-label="Close project preview"
             >
-              <X className="w-6 h-6" />
+              <X className="h-5 w-5 sm:h-6 sm:w-6" />
             </button>
 
-            {/* Image Preview Side */}
-            <div className="lg:w-2/3 relative h-[300px] lg:h-full bg-zinc-950 flex flex-col overflow-hidden">
+            <div className="relative flex h-[240px] flex-col overflow-hidden bg-zinc-950 sm:h-[300px] lg:h-full lg:w-2/3">
               <div className="flex-1 relative group flex items-center justify-center overflow-hidden">
                 <AnimatePresence mode="wait">
                   <motion.img 
@@ -52,7 +51,6 @@ export function ProjectModal({ project, onClose, isDarkMode, activeImage, setAct
                   />
                 </AnimatePresence>
 
-                {/* Navigation Arrows */}
                 {(project.images?.length || 0) > 1 && (
                   <>
                     <button 
@@ -60,26 +58,27 @@ export function ProjectModal({ project, onClose, isDarkMode, activeImage, setAct
                         e.stopPropagation();
                         setActiveImage(prev => (prev as number) > 0 ? (prev as number) - 1 : (project.images?.length || 1) - 1);
                       }}
-                      className="absolute left-6 w-12 h-12 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center text-white border border-white/10 opacity-0 group-hover:opacity-100 transition-all hover:bg-black/80"
+                      className="absolute left-3 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-black/50 text-white opacity-100 backdrop-blur-md transition-all hover:bg-black/80 sm:left-6 sm:h-12 sm:w-12 lg:opacity-0 lg:group-hover:opacity-100"
+                      aria-label="Previous project image"
                     >
-                      <ChevronLeft className="w-6 h-6" />
+                      <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
                     </button>
                     <button 
                       onClick={(e) => {
                         e.stopPropagation();
                         setActiveImage(prev => ((prev as number) + 1) % (project.images?.length || 1));
                       }}
-                      className="absolute right-6 w-12 h-12 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center text-white border border-white/10 opacity-0 group-hover:opacity-100 transition-all hover:bg-black/80"
+                      className="absolute right-3 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-black/50 text-white opacity-100 backdrop-blur-md transition-all hover:bg-black/80 sm:right-6 sm:h-12 sm:w-12 lg:opacity-0 lg:group-hover:opacity-100"
+                      aria-label="Next project image"
                     >
-                      <ChevronRight className="w-6 h-6" />
+                      <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
                     </button>
                   </>
                 )}
 
-                {/* Indicators - Numerical Design */}
                 {(project.images?.length || 0) > 1 && (
-                  <div className="absolute bottom-8 left-8">
-                     <div className="bg-black/50 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full flex items-center gap-3">
+                  <div className="absolute bottom-4 left-4 sm:bottom-8 sm:left-8">
+                     <div className="flex items-center gap-2 rounded-full border border-white/10 bg-black/50 px-3 py-2 backdrop-blur-md sm:gap-3 sm:px-4">
                         <span className="text-[10px] font-bold font-mono text-white tracking-widest">
                            {String(activeImage + 1).padStart(2, '0')} / {String(project.images?.length).padStart(2, '0')}
                         </span>
@@ -96,17 +95,16 @@ export function ProjectModal({ project, onClose, isDarkMode, activeImage, setAct
               </div>
             </div>
 
-            {/* Info Side */}
-            <div className="lg:w-1/3 flex flex-col h-full overflow-y-auto">
-              <div className="p-8 lg:p-12 space-y-10">
+            <div className="flex h-full flex-col overflow-y-auto overscroll-contain lg:w-1/3">
+              <div className="space-y-8 p-6 pt-16 sm:p-8 sm:pt-20 lg:space-y-10 lg:p-12">
                 <div className="space-y-4">
                   <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-500">{project.category}</p>
-                  <h2 className="text-4xl font-extrabold tracking-tight">{project.title}</h2>
+                  <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">{project.title}</h2>
                 </div>
 
                 <section className="space-y-4">
                   <h3 className="text-xs font-bold uppercase tracking-[0.1em] text-zinc-500">Overview</h3>
-                  <p className={`text-lg leading-relaxed ${isDarkMode ? "text-zinc-300" : "text-zinc-600 font-medium"}`}>
+                  <p className={`text-base leading-relaxed sm:text-lg ${isDarkMode ? "text-zinc-300" : "text-zinc-600 font-medium"}`}>
                     {project.overview}
                   </p>
                 </section>

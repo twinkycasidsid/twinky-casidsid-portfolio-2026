@@ -40,6 +40,17 @@ export default function AchievementsPage({ isDarkMode }: AchievementsPageProps) 
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [selectedCert, zoom]);
 
+  useEffect(() => {
+    if (!selectedCert) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [selectedCert]);
+
   return (
     <div className={`min-h-screen transition-colors duration-500 font-sans ${isDarkMode ? "bg-zinc-950 text-white" : "bg-neutral-50 text-zinc-900"}`}>
       <div className="max-w-7xl mx-auto px-6 py-12 lg:py-20">
@@ -112,8 +123,8 @@ export default function AchievementsPage({ isDarkMode }: AchievementsPageProps) 
         </footer>
       </div>
 
-      <div className="fixed bottom-10 right-10 z-50">
-        <button className={`flex items-center gap-3 px-8 py-4 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-all group font-bold tracking-tight ${isDarkMode ? "bg-white text-black" : "bg-zinc-950 text-white"}`}>
+      <div className="fixed bottom-4 right-4 z-50 sm:bottom-10 sm:right-10">
+        <button className={`flex items-center gap-3 rounded-full px-5 py-3 text-sm font-bold tracking-tight shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-all group sm:px-8 sm:py-4 sm:text-base ${isDarkMode ? "bg-white text-black" : "bg-zinc-950 text-white"}`}>
           <MessageCircle className="w-6 h-6" />
           <span>Chat with Ren</span>
         </button>
@@ -121,7 +132,7 @@ export default function AchievementsPage({ isDarkMode }: AchievementsPageProps) 
 
       <AnimatePresence>
         {selectedCert && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10">
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 md:p-10">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -134,13 +145,13 @@ export default function AchievementsPage({ isDarkMode }: AchievementsPageProps) 
               initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.92 }}
-              className="relative z-[110] w-full max-w-6xl rounded-[2rem] border border-white/10 bg-zinc-950/95 p-4 sm:p-6 lg:p-8"
+              className="relative z-[110] flex max-h-[calc(100dvh-1.5rem)] w-full max-w-6xl flex-col overflow-hidden rounded-[1.5rem] border border-white/10 bg-zinc-950/95 p-4 sm:max-h-[calc(100dvh-2rem)] sm:rounded-[2rem] sm:p-6 lg:p-8"
               onWheel={(event) => {
                 event.preventDefault();
                 updateZoom(zoom + (event.deltaY < 0 ? ZOOM_STEP : -ZOOM_STEP));
               }}
             >
-              <div className="mb-5 flex flex-wrap items-center justify-between gap-4">
+              <div className="mb-5 flex flex-wrap items-start justify-between gap-4 pr-12 sm:items-center sm:pr-16">
                 <div className="space-y-2">
                   <div className="flex flex-wrap items-center gap-3">
                     {selectedCert.category && (
@@ -150,8 +161,8 @@ export default function AchievementsPage({ isDarkMode }: AchievementsPageProps) 
                     )}
                     {selectedCert.year && <span className="text-xs font-mono text-zinc-500">{selectedCert.year}</span>}
                   </div>
-                  <h2 className="text-2xl font-bold text-white tracking-tight">{selectedCert.title}</h2>
-                  <p className="max-w-3xl text-zinc-400 font-medium leading-relaxed">{selectedCert.description}</p>
+                  <h2 className="text-xl font-bold tracking-tight text-white sm:text-2xl">{selectedCert.title}</h2>
+                  <p className="max-w-3xl text-sm font-medium leading-relaxed text-zinc-400 sm:text-base">{selectedCert.description}</p>
                 </div>
 
                 <div className="flex items-center gap-2">
@@ -182,7 +193,7 @@ export default function AchievementsPage({ isDarkMode }: AchievementsPageProps) 
                   <button
                     type="button"
                     onClick={closeModal}
-                    className="rounded-full border border-white/10 bg-white/5 p-3 text-white transition-colors hover:bg-white/10"
+                    className="absolute right-4 top-4 rounded-full border border-white/10 bg-white/5 p-3 text-white transition-colors hover:bg-white/10 sm:right-6 sm:top-6"
                     aria-label="Close certificate"
                   >
                     <X className="w-5 h-5" />
@@ -190,7 +201,7 @@ export default function AchievementsPage({ isDarkMode }: AchievementsPageProps) 
                 </div>
               </div>
 
-              <div className="max-h-[72vh] overflow-auto rounded-[1.5rem] bg-black/40 p-4">
+              <div className="min-h-0 flex-1 overflow-auto rounded-[1.25rem] bg-black/40 p-3 sm:rounded-[1.5rem] sm:p-4">
                 <div className="flex min-h-[50vh] items-center justify-center">
                   <img
                     src={selectedCert.image}
@@ -201,8 +212,8 @@ export default function AchievementsPage({ isDarkMode }: AchievementsPageProps) 
                   />
                 </div>
               </div>
-              <p className="mt-4 text-center text-xs font-medium uppercase tracking-[0.18em] text-zinc-500">
-                Use mouse wheel, double click, or keyboard keys `+`, `-`, and `0` to control zoom
+              <p className="mt-4 text-center text-[10px] font-medium uppercase tracking-[0.18em] text-zinc-500 sm:text-xs">
+                Use zoom buttons, mouse wheel, double click, or keyboard keys `+`, `-`, and `0`
               </p>
             </motion.div>
           </div>

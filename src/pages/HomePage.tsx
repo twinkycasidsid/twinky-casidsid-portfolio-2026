@@ -96,6 +96,23 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [selectedGalleryImage, galleryImages.length]);
 
+  useEffect(() => {
+    const hasOpenModal =
+      Boolean(selectedProject) ||
+      Boolean(selectedCertificate) ||
+      Boolean(selectedGalleryImage) ||
+      showChatMaintenance;
+
+    if (!hasOpenModal) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [selectedProject, selectedCertificate, selectedGalleryImage, showChatMaintenance]);
+
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
@@ -468,7 +485,7 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
       </div>
 
       {/* Floating Interface */}
-      <div className="fixed bottom-10 right-10 flex flex-col items-end gap-4 z-50">
+      <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end gap-3 sm:bottom-10 sm:right-10 sm:gap-4">
         <AnimatePresence>
           {showBackToTop && (
             <motion.button 
@@ -476,7 +493,7 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0, opacity: 0 }}
               onClick={scrollToTop}
-              className={`p-4 rounded-full shadow-2xl transition-all ${isDarkMode ? "bg-white text-black" : "bg-zinc-950 text-white"}`}
+              className={`rounded-full p-3 shadow-2xl transition-all sm:p-4 ${isDarkMode ? "bg-white text-black" : "bg-zinc-950 text-white"}`}
             >
               <ArrowUp className="w-6 h-6" />
             </motion.button>
@@ -484,7 +501,7 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
         </AnimatePresence>
         <button
           onClick={() => setShowChatMaintenance(true)}
-          className={`flex items-center gap-3 px-8 py-4 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-all group font-bold tracking-tight ${isDarkMode ? "bg-white text-black" : "bg-zinc-950 text-white"}`}
+          className={`group flex items-center gap-3 rounded-full px-5 py-3 text-sm font-bold tracking-tight shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-all sm:px-8 sm:py-4 sm:text-base ${isDarkMode ? "bg-white text-black" : "bg-zinc-950 text-white"}`}
         >
           <MessageCircle className="w-6 h-6" />
           <span>Chat with Twinky</span>
@@ -501,7 +518,7 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
 
       <AnimatePresence>
         {selectedCertificate && (
-          <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 md:p-12">
+          <div className="fixed inset-0 z-[150] flex items-center justify-center p-3 sm:p-4 md:p-12">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -513,26 +530,31 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="relative w-full max-w-5xl h-full flex flex-col items-center justify-center pointer-events-none"
+              className="relative flex h-full max-h-[calc(100dvh-1.5rem)] w-full max-w-5xl flex-col overflow-hidden rounded-[1.5rem] border border-white/10 bg-zinc-950/95 p-4 pointer-events-auto sm:max-h-[calc(100dvh-2rem)] sm:rounded-[2rem] sm:p-6"
             >
-              <img
-                src={selectedCertificate.image}
-                className="w-full h-auto max-h-[85vh] object-contain rounded-xl pointer-events-auto shadow-2xl"
-                alt={selectedCertificate.title}
-              />
+              <button
+                onClick={() => setSelectedCertificate(null)}
+                className="absolute right-4 top-4 z-[160] rounded-full border border-white/10 bg-black/30 p-2.5 text-white transition-all hover:bg-black/50 sm:right-6 sm:top-6 sm:p-3"
+                aria-label="Close certificate preview"
+              >
+                <X className="h-6 w-6 sm:h-8 sm:w-8" />
+              </button>
 
-              <div className="mt-8 text-center space-y-2 pointer-events-auto">
-                <h2 className="text-2xl font-bold text-white tracking-tight uppercase">{selectedCertificate.title}</h2>
-                <p className="text-zinc-400 font-medium leading-relaxed max-w-3xl">{selectedCertificate.description}</p>
+              <div className="min-h-0 flex-1 overflow-auto rounded-[1.25rem] bg-black/30 p-3 pt-12 sm:rounded-[1.5rem] sm:p-4 sm:pt-16">
+                <div className="flex min-h-full flex-col items-center justify-center">
+                  <img
+                    src={selectedCertificate.image}
+                    className="w-full h-auto max-h-[65dvh] object-contain rounded-xl shadow-2xl sm:max-h-[72dvh]"
+                    alt={selectedCertificate.title}
+                  />
+
+                  <div className="mt-6 space-y-2 text-center">
+                    <h2 className="text-xl font-bold tracking-tight text-white uppercase sm:text-2xl">{selectedCertificate.title}</h2>
+                    <p className="mx-auto max-w-3xl text-sm font-medium leading-relaxed text-zinc-400 sm:text-base">{selectedCertificate.description}</p>
+                  </div>
+                </div>
               </div>
             </motion.div>
-
-            <button
-              onClick={() => setSelectedCertificate(null)}
-              className="absolute top-8 right-8 p-3 bg-black/20 hover:bg-black/40 backdrop-blur-md rounded-full text-white transition-all border border-white/10 z-[160]"
-            >
-              <X className="w-8 h-8" />
-            </button>
           </div>
         )}
       </AnimatePresence>
@@ -540,7 +562,7 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
       {/* Gallery Image Modal */}
       <AnimatePresence>
         {selectedGalleryImage && (
-          <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 md:p-12">
+          <div className="fixed inset-0 z-[200] flex items-center justify-center p-3 sm:p-4 md:p-12">
              <motion.div 
                initial={{ opacity: 0 }}
                animate={{ opacity: 1 }}
@@ -552,19 +574,20 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
                initial={{ opacity: 0, scale: 0.9 }}
                animate={{ opacity: 1, scale: 1 }}
                exit={{ opacity: 0, scale: 0.9 }}
-               className="relative max-w-7xl max-h-[90vh] w-full"
+               className="relative w-full max-w-7xl overflow-hidden rounded-[1.5rem] border border-white/10 bg-zinc-950/95 p-3 sm:rounded-[2rem] sm:p-4"
              >
-                <img 
-                  src={selectedGalleryImage} 
-                  className="w-full h-full object-contain rounded-3xl" 
-                  alt="Enlarged gallery view" 
-                />
                 <button 
                   onClick={() => setSelectedGalleryImage(null)}
-                  className="absolute -top-8 -right-8 p-3 text-white hover:text-zinc-400 transition-colors"
+                  className="absolute right-3 top-3 z-10 rounded-full border border-white/10 bg-black/40 p-2.5 text-white transition-colors hover:bg-black/60 sm:right-4 sm:top-4 sm:p-3"
+                  aria-label="Close gallery preview"
                 >
-                  <X className="w-8 h-8" />
+                  <X className="h-6 w-6 sm:h-8 sm:w-8" />
                 </button>
+                <img 
+                  src={selectedGalleryImage} 
+                  className="max-h-[calc(100dvh-4rem)] w-full rounded-[1.25rem] object-contain sm:max-h-[calc(100dvh-6rem)] sm:rounded-[1.5rem]" 
+                  alt="Enlarged gallery view" 
+                />
              </motion.div>
           </div>
         )}
