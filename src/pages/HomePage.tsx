@@ -479,7 +479,7 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
 
         {/* Final Footer */}
         <footer className="mt-20 text-center space-y-2">
-           <p className="text-sm font-bold text-zinc-500 uppercase tracking-widest">Â© 2026 Twinky Casidsid. All Rights Reserved.</p>
+           <p className="text-sm font-bold text-zinc-500 uppercase tracking-widest">© 2026 Twinky Casidsid. All Rights Reserved.</p>
         </footer>
 
       </div>
