@@ -35,7 +35,7 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
   const [showChatMaintenance, setShowChatMaintenance] = useState(false);
 
   const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
-  const [selectedGalleryImage, setSelectedGalleryImage] = useState<string | null>(null);
+  const [selectedGalleryIndex, setSelectedGalleryIndex] = useState<number | null>(null);
   const featuredProjects = PROJECTS.filter((project) =>
     ["PassIT", "AIRA (AI Recruitment Assistant)", "WisEnergy", "The Last Ritual"].includes(project.title)
   );
@@ -78,11 +78,11 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
   }, []);
 
   useEffect(() => {
-    if (!selectedGalleryImage) return;
+    if (selectedGalleryIndex === null) return;
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setSelectedGalleryImage(null);
+        setSelectedGalleryIndex(null);
       }
       if (event.key === "ArrowLeft") {
         setActiveGalleryIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
@@ -94,13 +94,13 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [selectedGalleryImage, galleryImages.length]);
+  }, [selectedGalleryIndex, galleryImages.length]);
 
   useEffect(() => {
     const hasOpenModal =
       Boolean(selectedProject) ||
       Boolean(selectedCertificate) ||
-      Boolean(selectedGalleryImage) ||
+      selectedGalleryIndex !== null ||
       showChatMaintenance;
 
     if (!hasOpenModal) return;
@@ -111,7 +111,7 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
     return () => {
       document.body.style.overflow = previousOverflow;
     };
-  }, [selectedProject, selectedCertificate, selectedGalleryImage, showChatMaintenance]);
+  }, [selectedProject, selectedCertificate, selectedGalleryIndex, showChatMaintenance]);
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
@@ -363,11 +363,11 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
 
             <div
               className="relative aspect-[21/9] rounded-[2.5rem] overflow-hidden group cursor-pointer touch-pan-y"
-              onClick={() => setSelectedGalleryImage(galleryImages[activeGalleryIndex])}
+              onClick={() => setSelectedGalleryIndex(activeGalleryIndex)}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
                   e.preventDefault();
-                  setSelectedGalleryImage(galleryImages[activeGalleryIndex]);
+                  setSelectedGalleryIndex(activeGalleryIndex);
                 }
                 if (e.key === "ArrowLeft") {
                   e.preventDefault();
@@ -561,13 +561,13 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
 
       {/* Gallery Image Modal */}
       <AnimatePresence>
-        {selectedGalleryImage && (
+        {selectedGalleryIndex !== null && (
           <div className="fixed inset-0 z-[200] flex items-center justify-center p-3 sm:p-4 md:p-12">
              <motion.div 
                initial={{ opacity: 0 }}
                animate={{ opacity: 1 }}
                exit={{ opacity: 0 }}
-               onClick={() => setSelectedGalleryImage(null)}
+               onClick={() => setSelectedGalleryIndex(null)}
                className="absolute inset-0 bg-black/95 backdrop-blur-2xl"
              />
              <motion.div 
@@ -577,16 +577,16 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
                className="relative w-full max-w-7xl overflow-hidden rounded-[1.5rem] border border-white/10 bg-zinc-950/95 p-3 sm:rounded-[2rem] sm:p-4"
              >
                 <button 
-                  onClick={() => setSelectedGalleryImage(null)}
+                  onClick={() => setSelectedGalleryIndex(null)}
                   className="absolute right-3 top-3 z-10 rounded-full border border-white/10 bg-black/40 p-2.5 text-white transition-colors hover:bg-black/60 sm:right-4 sm:top-4 sm:p-3"
                   aria-label="Close gallery preview"
                 >
                   <X className="h-6 w-6 sm:h-8 sm:w-8" />
                 </button>
                 <img 
-                  src={selectedGalleryImage} 
+                  src={galleryImages[selectedGalleryIndex]} 
                   className="max-h-[calc(100dvh-4rem)] w-full rounded-[1.25rem] object-contain sm:max-h-[calc(100dvh-6rem)] sm:rounded-[1.5rem]" 
-                  alt="Enlarged gallery view" 
+                  alt={`Enlarged gallery view ${selectedGalleryIndex + 1}`}
                 />
              </motion.div>
           </div>
