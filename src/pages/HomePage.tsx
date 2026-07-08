@@ -400,7 +400,7 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
                 </div>
 
                 {/* Progress indicators */}
-                <div className="absolute bottom-10 left-10 flex gap-2">
+                <div className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2 sm:bottom-10 sm:left-10 sm:right-auto sm:flex-nowrap">
                    {galleryImages.map((_, i) => (
                      <button 
                       key={i}
@@ -417,10 +417,10 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
         </section>
 
         {/* Contact / Footer Info */}
-        <div className={`mt-20 p-12 rounded-[3rem] border flex flex-col lg:flex-row justify-between gap-12 ${isDarkMode ? "bg-zinc-900/30 border-zinc-800" : "bg-white border-zinc-100 shadow-sm"}`}>
+        <div className={`mt-20 flex flex-col justify-between gap-10 rounded-[2.5rem] border p-6 sm:p-8 lg:flex-row lg:gap-12 lg:rounded-[3rem] lg:p-12 ${isDarkMode ? "bg-zinc-900/30 border-zinc-800" : "bg-white border-zinc-100 shadow-sm"}`}>
             <div className="max-w-md space-y-8">
             <div>
-              <h2 className="text-4xl font-bold mb-6 tracking-tight italic">Let's work together.</h2>
+              <h2 className="mb-6 text-3xl font-bold tracking-tight italic sm:text-4xl">Let's work together.</h2>
               <p className="text-zinc-500 font-medium leading-relaxed">
                 Open to UI/UX and software freelance work, bringing hands-on experience in AI, IoT, mobile apps, and full-stack development to help turn ideas into polished, practical products.
               </p>
@@ -428,7 +428,7 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
             
             <div className="space-y-4">
                <p className="text-xs font-bold uppercase tracking-widest text-zinc-500">Follow Me</p>
-               <div className="flex gap-4">
+               <div className="flex flex-wrap gap-4">
                   {SOCIAL_LINKS.map(link => (
                     <a 
                       key={link.name} 
@@ -447,32 +447,32 @@ export default function HomePage({ isDarkMode, setIsDarkMode }: HomePageProps) {
             </div>
           </div>
 
-          <div className="flex-1 max-w-lg space-y-4">
+          <div className="flex-1 max-w-lg min-w-0 space-y-4">
              <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-6">Get in Touch</p>
-             <a href="mailto:twinkycasidsidx@gmail.com" className={`p-6 rounded-2xl border flex items-center justify-between group cursor-pointer transition-all ${isDarkMode ? "bg-zinc-950 border-zinc-800 hover:bg-zinc-900" : "bg-neutral-50 border-zinc-200 hover:bg-white"}`}>
-                <div className="flex items-center gap-4">
-                   <Mail className="w-6 h-6 text-zinc-500" />
-                   <div>
+             <a href="mailto:twinkycasidsidx@gmail.com" className={`group flex flex-col items-start gap-4 rounded-2xl border p-4 transition-all sm:flex-row sm:items-center sm:justify-between sm:p-6 ${isDarkMode ? "bg-zinc-950 border-zinc-800 hover:bg-zinc-900" : "bg-neutral-50 border-zinc-200 hover:bg-white"}`}>
+                <div className="flex min-w-0 items-start gap-4 sm:items-center">
+                   <Mail className="h-6 w-6 shrink-0 text-zinc-500" />
+                   <div className="min-w-0">
                       <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-600">Email</p>
-                      <p className="font-bold">twinkycasidsidx@gmail.com</p>
+                      <p className="break-all text-sm font-bold leading-snug sm:text-base">twinkycasidsidx@gmail.com</p>
                    </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-zinc-800 opacity-0 group-hover:opacity-100 transition-all" />
+                <ChevronRight className="hidden h-5 w-5 shrink-0 text-zinc-800 opacity-0 transition-all group-hover:opacity-100 sm:block" />
              </a>
 
              <a
                 href="/Twinky Casidsid CV.pdf"
                 download
-                className={`p-6 rounded-2xl border flex items-center justify-between group cursor-pointer transition-all ${isDarkMode ? "bg-zinc-950 border-zinc-800 hover:bg-zinc-900" : "bg-neutral-50 border-zinc-200 hover:bg-white"}`}
+                className={`group flex flex-col items-start gap-4 rounded-2xl border p-4 transition-all sm:flex-row sm:items-center sm:justify-between sm:p-6 ${isDarkMode ? "bg-zinc-950 border-zinc-800 hover:bg-zinc-900" : "bg-neutral-50 border-zinc-200 hover:bg-white"}`}
              >
-                <div className="flex items-center gap-4">
-                   <Download className="w-6 h-6 text-zinc-500" />
-                   <div>
+                <div className="flex min-w-0 items-start gap-4 sm:items-center">
+                   <Download className="h-6 w-6 shrink-0 text-zinc-500" />
+                   <div className="min-w-0">
                       <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-600">Curriculum Vitae</p>
-                      <p className="font-bold">Download CV</p>
+                      <p className="text-sm font-bold leading-snug sm:text-base">Download CV</p>
                    </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-zinc-800 opacity-0 group-hover:opacity-100 transition-all" />
+                <ChevronRight className="hidden h-5 w-5 shrink-0 text-zinc-800 opacity-0 transition-all group-hover:opacity-100 sm:block" />
              </a>
           </div>
         </div>
